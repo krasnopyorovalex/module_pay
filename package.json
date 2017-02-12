@@ -1,0 +1,28 @@
+{
+  "name": "Dashboard",
+  "version": "1.0.0",
+  "description": "Yii 2 Basic Project Template ============================",
+  "main": "gulpfile.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://sliver2512@bitbucket.org/sliver2512/seocore.git"
+  },
+  "devDependencies": {
+    "gulp": "~3.9.0",
+    "gulp-rename": "^1.2.0",
+    "gulp-uglify": "~1.4.2",
+    "gulp-watch": "^4.3.5",
+    "gulp-minify-css": "~1.2.1",
+    "gulp-concat-css": "~2.2.0",
+    "gulp-concat": "~2.6.0"
+  },
+  "author": "",
+  "license": "ISC",
+  "homepage": "https://bitbucket.org/sliver2512/seocore#readme"
+}

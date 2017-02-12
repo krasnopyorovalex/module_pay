@@ -1,0 +1,63 @@
+/*=== login-form ===*/
+#login-form .form-group p{
+    display: none;
+}
+#login-form .form-group { line-height: 0;margin: 0; }
+#login-form .input-group {
+    margin-bottom: 15px;
+}
+#login-form button{
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    border: medium none;
+    color: #fff;
+    width: 100%;
+}
+
+.site-login .login {margin-top: 45%;}
+
+/*=== breadcrumbs ===*/
+#breadcrumbs a { color: #ffffff}
+#breadcrumbs .breadcrumb-button .breadcrumb-arrow { width: 20px; }
+
+/*=== gallery_ajax_form ===*/
+.dropzone.dz-clickable {
+    cursor: pointer;
+}
+
+.dropzone.dz-clickable .dz-message, .dropzone.dz-clickable .dz-message * {
+    cursor: pointer;
+}
+.dropzone .dz-message {
+    font-weight: 400;
+}
+.dropzone .dz-message {
+    margin: 3em 0;
+    text-align: center;
+}
+.clear{
+    clear: both;
+}
+
+#image_box li{
+    list-style-type: none;
+    display: inline-block;
+    margin: 0.5em;
+    overflow: hidden;
+}
+
+#thumbs .icon-move:hover{
+    cursor: move;
+}
+
+#thumbs .icon-edit:hover, #thumbs .icon-remove-sign{
+    cursor: pointer;
+}
+
+#thumbs .edit span{ margin-left: 1em; }
+#thumbs .unpublished{
+    opacity: 0.5;
+}
+
+#gallery_box a.child {
+    color: #4E9CC4;
+}

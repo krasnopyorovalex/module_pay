@@ -1,0 +1,15 @@
+{{ set(this, 'title', app.params['title_404']) }}
+
+{{ void(this.beginBlock('breadcrumbs')) }}
+    <div class="breadcrumbs">
+        <ul>
+            <li><a href="{{ app.homeUrl }}">Главная</a></li>
+            <li>{{ app.params['title_404'] }}</li>
+        </ul>
+    </div>
+    <div class="clearfix"></div>
+{{ void(this.endBlock()) }}
+
+<p>
+    {{ app.params['message_404'] | raw }}
+</p>
