@@ -2,10 +2,10 @@
 /* @var $this yii\web\View */
 /* @var $dataProvider common\models\Rooms */
 
+use yii\helpers\ArrayHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
-use backend\components\IconHelper;
 $this->params['breadcrumbs'][] = $this->context->module->params['name'];
 ?>
 <div class="pages-default-index container">
@@ -22,10 +22,11 @@ $this->params['breadcrumbs'][] = $this->context->module->params['name'];
                             'columns' => [
                                 'name',
                                 [
-                                    'header' => 'Тариф',
+                                    'header' => 'Скидки',
                                     'value' => function ($model) {
-                                        return $model->tariff->name;
+                                        return implode(', ', ArrayHelper::map($model->discounts, 'id', 'name'));
                                     },
+                                    'format' => 'html'
                                 ],
                                 [
                                     'class' => 'yii\grid\ActionColumn',

@@ -22,7 +22,7 @@ class MultiuploadRooms extends Action
         $image->file = UploadedFile::getInstancesByName('file');
         //save to DB
         $image['room_id'] = $room_id;
-        $image['basename'] = Yii::$app->getSecurity()->generateRandomString(25);
+        $image['basename'] = md5(Yii::$app->getSecurity()->generateRandomString(25));
         $image['ext'] = $image->file[0]->extension;
         $image['publish'] = 1;
 

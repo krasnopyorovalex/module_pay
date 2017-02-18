@@ -14,6 +14,11 @@ return [
     'language' => 'ru',
     'homeUrl' => '/',
     'timeZone'=>'Europe/Moscow',
+    'container' => [
+        'singletons' => [
+            'frontend\components\repository\RepositoryInterface' => 'frontend\components\repository\RoomRepository'
+        ],
+    ],
     'components' => [
         'assetManager' => [
             'appendTimestamp' => true,
@@ -38,26 +43,9 @@ return [
             'showScriptName' => false,
             'enableStrictParsing' => true,
             'rules' => [
-                '/' => 'site'
-            ],
-        ],
-        'view' => [
-            'class' => 'yii\web\View',
-            'renderers' => [
-                'twig' => [
-                    'class' => 'yii\twig\ViewRenderer',
-                    'cachePath' => '@runtime/Twig/cache',
-                    // Array of twig options:
-                    'options' => [
-                        'auto_reload' => true,
-                    ],
-                    'globals' => [
-                        'html' => '\yii\helpers\Html',
-                        'url' => '\yii\helpers\Url',
-                        'stringHelper' => '\yii\helpers\StringHelper'
-                    ],
-                    'uses' => ['yii\bootstrap'],
-                ],
+                '/' => 'site',
+                'get-rooms' => 'booking',
+                'test-rooms' => 'booking/test',
             ],
         ],
     ],

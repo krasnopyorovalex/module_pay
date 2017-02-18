@@ -36,7 +36,8 @@ class m170212_071556_periods extends Migration
     public function down()
     {
         $this->dropTable('{{%periods}}');
-        return false;
+        $this->dropTable('{{%periods_via}}');
+        return true;
     }
 
     /*

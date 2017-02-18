@@ -5,6 +5,8 @@
 /* @var array $method_payments_array */
 /* @var array $attributes_array */
 /* @var array $periods_array */
+/* @var array $discounts_array */
+/* @var array $ao_array */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -61,6 +63,8 @@ $this->params['breadcrumbs'][] = $this->context->actions[$this->context->action-
                                                     <li class="active"><a href="#periods" data-toggle="tab"><i class="icon-calendar"></i> <span>Периоды\Цены</span></a></li>
                                                     <li><a href="#method_payments" data-toggle="tab"><i class="icon-money"></i> <span>Методы оплаты</span></a></li>
                                                     <li><a href="#attributes" data-toggle="tab"><i class="icon-font"></i> <span>Атрибуты</span></a></li>
+                                                    <li><a href="#discounts" data-toggle="tab"><i class="icon-gift"></i> <span>Скидки</span></a></li>
+                                                    <li><a href="#ao" data-toggle="tab"><i class="icon-gift"></i> <span>Цены за варианты размещения</span></a></li>
                                                 </ul>
                                             </div>
                                             <div class="box-content padded">
@@ -107,6 +111,33 @@ $this->params['breadcrumbs'][] = $this->context->actions[$this->context->action-
                                                             <?= Html::endTag('div')?>
                                                         <?php endif;?>
                                                         <!-- attributes rooms -->
+                                                    </div>
+                                                    <div class="tab-pane" id="discounts">
+                                                        <!-- discounts room -->
+                                                        <?php if($discounts_array):?>
+                                                            <?= Html::beginTag('div', ['class' => 'attributes_product'])?>
+                                                            <?= $form->field($model, 'discountsArray')->dropDownList($discounts_array,[
+                                                                'multiple' => 'multiple',
+                                                                'class' => 'chzn-select'
+                                                            ])->label(false) ?>
+                                                            <?= Html::endTag('div')?>
+                                                        <?php endif;?>
+                                                        <!-- discounts room -->
+                                                    </div>
+                                                    <div class="tab-pane" id="ao">
+                                                        <!-- accommodation options room -->
+                                                        <?php if($ao_array):?>
+                                                            <?= Html::beginTag('div', ['class' => 'attributes_product'])?>
+                                                            <?php foreach ($ao_array as $ao):?>
+                                                                <?= $form->field($model, 'aoArray['.$ao['id'].']')->textInput([
+                                                                    'value' => isset($ao_room[$ao['id']])
+                                                                        ? $ao_room[$ao['id']]
+                                                                        : ''
+                                                                ])->label($ao['name'])?>
+                                                            <?php endforeach;?>
+                                                            <?= Html::endTag('div')?>
+                                                        <?php endif;?>
+                                                        <!-- accommodation options -->
                                                     </div>
                                                 </div>
                                             </div>

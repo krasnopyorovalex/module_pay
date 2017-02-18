@@ -4,6 +4,8 @@ namespace backend\modules\rooms\controllers;
 
 use backend\components\MultiuploadRooms;
 use backend\controllers\ModuleController;
+use common\models\AccommodationOptions;
+use common\models\Discounts;
 use common\models\PaymentMethods;
 use common\models\Periods;
 use common\models\Rooms;
@@ -139,6 +141,9 @@ class DefaultController extends ModuleController
             'method_payments_array' => ArrayHelper::map(PaymentMethods::find()->asArray()->all(),'id','name'),
             'periods_array' => Periods::find()->asArray()->all(),
             'dates_room' => ArrayHelper::map($model['periodsVias'], 'period_id', 'value'),
+            'discounts_array' => ArrayHelper::map(Discounts::find()->asArray()->all(),'id','name'),
+            'ao_room' => ArrayHelper::map($model['accommodationOptionsVias'], 'accommodation_option_id', 'value'),
+            'ao_array' => AccommodationOptions::find()->asArray()->all(),
             'images' => new RoomsImages,
         ];
     }

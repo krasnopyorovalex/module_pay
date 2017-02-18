@@ -2,7 +2,9 @@
 
 namespace common\models;
 
+use backend\components\AccommodationOptionsBehavior;
 use backend\components\AttributesBehavior;
+use backend\components\DiscountsBehavior;
 use backend\components\PaymentMethodsBehavior;
 use backend\components\PeriodsBehavior;
 use yii\db\ActiveRecord;
@@ -17,6 +19,10 @@ use yii\helpers\ArrayHelper;
  * @property integer $max_peoples_adults
  * @property integer $tariff_id
  *
+ * @property AccommodationOptionsVia[] $accommodationOptionsVias
+ * @property AccommodationOptions[] $accommodationOptions
+ * @property DiscountsVia[] $discountsVias
+ * @property Discounts[] $discounts
  * @property PaymentMethodsVia[] $paymentMethodsVias
  * @property PaymentMethods[] $paymentMethods
  * @property PeriodsVia[] $periodsVias
@@ -32,6 +38,8 @@ class Rooms extends ActiveRecord
     public $attrArray = [];
     public $paymentMethodsArray = [];
     public $periodsArray = [];
+    public $discountsArray = [];
+    public $aoArray = [];
 
     public function behaviors()
     {
@@ -44,6 +52,12 @@ class Rooms extends ActiveRecord
             ],
             [
                 'class' => PeriodsBehavior::className()
+            ],
+            [
+                'class' => DiscountsBehavior::className()
+            ],
+            [
+                'class' => AccommodationOptionsBehavior::className()
             ]
         ];
     }
@@ -66,7 +80,7 @@ class Rooms extends ActiveRecord
             [['max_peoples', 'max_peoples_adults', 'tariff_id'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['tariff_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tariffs::className(), 'targetAttribute' => ['tariff_id' => 'id']],
-            [['attrArray', 'paymentMethodsArray', 'periodsArray'], 'safe'],
+            [['attrArray', 'paymentMethodsArray', 'periodsArray', 'discountsArray', 'aoArray'], 'safe'],
         ];
     }
 
@@ -82,6 +96,22 @@ class Rooms extends ActiveRecord
             'max_peoples_adults' => 'Максимальное количество взрослых',
             'tariff_id' => 'Тариф номера'
         ];
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccommodationOptionsVias()
+    {
+        return $this->hasMany(AccommodationOptionsVia::className(), ['room_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getAccommodationOptions()
+    {
+        return $this->hasMany(AccommodationOptions::className(), ['id' => 'accommodation_option_id'])->viaTable('{{%accommodation_options_via}}', ['room_id' => 'id']);
     }
 
     /**
@@ -148,9 +178,26 @@ class Rooms extends ActiveRecord
         return $this->hasMany(Periods::className(), ['id' => 'period_id'])->viaTable('{{%periods_via}}', ['room_id' => 'id']);
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDiscountsVias()
+    {
+        return $this->hasMany(DiscountsVia::className(), ['room_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDiscounts()
+    {
+        return $this->hasMany(Discounts::className(), ['id' => 'discount_id'])->viaTable('{{%discounts_via}}', ['room_id' => 'id']);
+    }
+
     public function afterFind()
     {
         $this->paymentMethodsArray = ArrayHelper::getColumn($this->paymentMethods, 'id');
+        $this->discountsArray = ArrayHelper::getColumn($this->discounts, 'id');
     }
 
 }

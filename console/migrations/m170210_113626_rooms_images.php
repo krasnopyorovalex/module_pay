@@ -30,7 +30,7 @@ class m170210_113626_rooms_images extends Migration
     public function down()
     {
         $this->dropTable('{{%rooms}}');
-        return false;
+        return true;
     }
 
     /*

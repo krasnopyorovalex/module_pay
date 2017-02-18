@@ -23,7 +23,7 @@ class m170212_063730_info_messages extends Migration
     {
         $this->dropTable('{{%info_messages}}');
 
-        return false;
+        return true;
     }
 
     /*

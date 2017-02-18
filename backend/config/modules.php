@@ -18,4 +18,10 @@ return [
     'periods' => [
         'class' => 'backend\modules\periods\Periods',
     ],
+    'discounts' => [
+        'class' => 'backend\modules\discounts\Discounts',
+    ],
+    'accommodation_options' => [
+        'class' => 'backend\modules\accommodation_options\AccommodationOptions',
+    ],
 ];

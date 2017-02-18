@@ -1,6 +1,6 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $dataProvider common\models\News */
+/* @var $dataProvider common\models\RoomsAttributes */
 
 use yii\helpers\Html;
 use yii\helpers\Url;

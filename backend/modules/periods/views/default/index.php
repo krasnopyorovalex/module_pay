@@ -1,11 +1,10 @@
 <?php
 /* @var $this yii\web\View */
-/* @var $dataProvider common\models\Tariffs */
+/* @var $dataProvider common\models\Periods */
 
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\grid\GridView;
-use backend\components\IconHelper;
 $this->params['breadcrumbs'][] = $this->context->module->params['name'];
 ?>
 <div class="pages-default-index container">

@@ -443,16 +443,30 @@ li.mjs-nestedSortable-collapsed.mjs-nestedSortable-hovering div {
     border: 1px solid #cccccc;
 }
 
-#periods .form-group {
-    display: inline-block;
-}
-
-#periods .form-group + .form-group {
-    margin-left: 2em;
-}
-
-#periods input {
-    width: 100%;
-    display: block;
+.discount_dates input {
     text-align: center;
+}
+.primary-sidebar .nav > li > a {
+    padding-left: 15px;
+}
+.primary-sidebar .nav > li > a i + span {
+    padding-left: 5px;
+}
+
+#ao .form-group, #periods .form-group {
+    width: 30%;
+    display: inline-block;
+    margin-left: 2%;
+    padding: 5px;
+    border: 1px solid #68a6ce;
+}
+
+#ao input, #periods input, #ao label, #periods label {
+    text-align: center;
+    display: block;
+}
+#ao input, #periods input {
+    width: 100px;
+    margin: 0 auto;
+    border: 1px solid #94BE5E;
 }

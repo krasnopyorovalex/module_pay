@@ -2,7 +2,6 @@
 /* @var $this yii\web\View */
 /* @var $model common\models\Tariffs */
 
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Url;
 use backend\assets\CkEditorAsset;

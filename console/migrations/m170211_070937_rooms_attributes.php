@@ -35,6 +35,6 @@ class m170211_070937_rooms_attributes extends Migration
     {
         $this->dropTable('{{%rooms_attributes}}');
         $this->dropTable('{{%rooms_attributes_via}}');
-        return false;
+        return true;
     }
 }

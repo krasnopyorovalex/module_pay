@@ -42,9 +42,9 @@
 
         <li>
             <span class="glow"></span>
-            <a href="<?= \yii\helpers\Url::toRoute(['/tariffs/default/index'])?>">
-                <i class="icon-money icon-2x"></i>
-                <span>Тарифы</span>
+            <a href="<?= \yii\helpers\Url::toRoute(['/discounts/default/index'])?>">
+                <i class="icon-gift icon-2x"></i>
+                <span>Скидки</span>
             </a>
         </li>
 
@@ -53,6 +53,14 @@
             <a href="<?= \yii\helpers\Url::toRoute(['/payment_methods/default/index'])?>">
                 <i class="icon-list-alt icon-2x"></i>
                 <span>Способы оплаты</span>
+            </a>
+        </li>
+
+        <li>
+            <span class="glow"></span>
+            <a href="<?= \yii\helpers\Url::toRoute(['/accommodation_options/default/index'])?>">
+                <i class="icon-user icon-2x"></i>
+                <span>Варианты размещения</span>
             </a>
         </li>
 
@@ -69,6 +77,14 @@
             <a href="<?= \yii\helpers\Url::toRoute(['/info_messages/default/index'])?>">
                 <i class="icon-info-sign icon-2x"></i>
                 <span>Инфосообщения</span>
+            </a>
+        </li>
+
+        <li>
+            <span class="glow"></span>
+            <a href="<?= \yii\helpers\Url::toRoute(['/settings/default/index'])?>">
+                <i class="icon-cog icon-2x"></i>
+                <span>Настройки</span>
             </a>
         </li>
 
