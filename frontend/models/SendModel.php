@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: sanek
- * Date: 22.05.16
- * Time: 23:11
- */
 
 namespace frontend\models;
 
@@ -12,18 +6,23 @@ use Yii;
 
 class SendModel
 {
-    /**
-     * @param $form
-     * @param $text
-     * @return bool
-     */
-    public function send($form, $text)
+
+    const THEME = 'Заявка на бронирование с сайта';
+
+    private $data;
+
+    public function __construct($data)
     {
-        return Yii::$app->mailer->compose()
-            ->setFrom(['sanya-sliver@ya.ru' => $form['name']])
-            ->setTo(explode(',', $form['email']))
-            ->setHtmlBody($text['text_email'])
-            ->setSubject($form['theme'])
+        $this->data = $data;
+    }
+
+    public function send($email)
+    {
+
+        return Yii::$app->mailer->compose('booking', ['model' => $this->data])
+            ->setFrom(['bron@resorts-email.ru' => $this->data['name']])
+            ->setTo(explode(',', $email))
+            ->setSubject(self::THEME)
             ->send();
     }
 

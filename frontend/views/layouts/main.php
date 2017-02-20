@@ -23,7 +23,7 @@ AppAsset::register($this);
 <header>
     <div>
         <img src="/images/logo.png" alt="alt">
-        <span>+7 (978) 835-39-10</span>
+        <span><?= $this->context->settings['phone']?></span>
     </div>
 </header>
 

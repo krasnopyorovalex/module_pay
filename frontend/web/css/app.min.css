@@ -151,7 +151,6 @@ summary{display:list-item}
 .datepicker--time-row input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;box-sizing:border-box;height:12px;width:12px;border-radius:3px;border:1px solid #dedede;background:#fff;cursor:pointer;transition:background .2s;margin-top:-6px}
 .datepicker--time-row input[type=range]::-moz-range-thumb{box-sizing:border-box;height:12px;width:12px;border-radius:3px;border:1px solid #dedede;background:#fff;cursor:pointer;transition:background .2s}
 .datepicker--time-row input[type=range]::-ms-thumb{box-sizing:border-box;height:12px;width:12px;border-radius:3px;border:1px solid #dedede;background:#fff;cursor:pointer;transition:background .2s}
-.loading,a{-webkit-transition:all 450ms cubic-bezier(.395,.425,.015,1) 0s}
 .datepicker--time-row input[type=range]::-webkit-slider-runnable-track{border:none;height:1px;cursor:pointer;color:transparent;background:0 0}
 .datepicker--time-row input[type=range]::-moz-range-track{border:none;height:1px;cursor:pointer;color:transparent;background:0 0}
 .datepicker--time-row input[type=range]::-ms-track{border:none;height:1px;cursor:pointer;color:transparent;background:0 0}
@@ -198,10 +197,10 @@ summary{display:list-item}
 .fancybox-lock,.fancybox-lock body{overflow:hidden!important}
 .fancybox-lock{width:auto}
 .fancybox-lock-test{overflow-y:hidden!important}
+.order-form,.owl-carousel .item{overflow:hidden}
 .fancybox-overlay{position:absolute;top:0;left:0;overflow:hidden;display:none;z-index:8010;background:url(/images/fancybox_overlay.png)}
 .fancybox-overlay-fixed{position:fixed;bottom:0;right:0}
 .fancybox-lock .fancybox-overlay{overflow:auto;overflow-y:scroll}
-.order-form,.owl-carousel .item{overflow:hidden}
 .fancybox-title{visibility:hidden;font:400 13px/20px "Helvetica Neue",Helvetica,Arial,sans-serif;position:relative;text-shadow:none;z-index:8050}
 .fancybox-opened .fancybox-title{visibility:visible}
 .fancybox-title-float-wrap{position:absolute;bottom:0;right:50%;margin-bottom:-35px;z-index:8050;text-align:center}
@@ -214,7 +213,6 @@ summary{display:list-item}
 }
 .spinner{width:30px;height:30px;position:absolute;top:calc(50% - 15px);left:calc(50% - 15px)}
 .double-bounce1,.double-bounce2{width:100%;height:100%;border-radius:50%;background-color:#fff;opacity:.6;position:absolute;top:0;left:0;-webkit-animation:sk-bounce 2s infinite ease-in-out;animation:sk-bounce 2s infinite ease-in-out}
-.owl-theme .owl-controls .owl-buttons .owl-next,.owl-theme .owl-controls .owl-buttons .owl-prev{width:25px;height:25px;position:absolute;top:calc(50% - 20px);background-image:url(../images/sprite.png)}
 .double-bounce2{-webkit-animation-delay:-1s;animation-delay:-1s}
 @-webkit-keyframes sk-bounce{0%,100%{-webkit-transform:scale(0)}
 50%{-webkit-transform:scale(1)}
@@ -222,6 +220,21 @@ summary{display:list-item}
 @keyframes sk-bounce{0%,100%{transform:scale(0);-webkit-transform:scale(0)}
 50%{transform:scale(1);-webkit-transform:scale(1)}
 }
+.expand-transition{transition:all .5s ease}
+.expand-enter,.expand-leave{height:0;opacity:0}
+body,html{min-height:100%}
+.humane,.humane-flatty{position:fixed;-moz-transition:all .4s ease-in-out;-webkit-transition:all .4s ease-in-out;-ms-transition:all .4s ease-in-out;-o-transition:all .4s ease-in-out;transition:all .4s ease-in-out;z-index:100000;filter:alpha(Opacity=100);font-family:Helvetica Neue,Helvetica,san-serif;font-size:16px;top:0;left:30%;opacity:0;width:40%;color:#444;padding:10px;text-align:center;background-color:#fff;-webkit-border-bottom-right-radius:3px;-webkit-border-bottom-left-radius:3px;-moz-border-bottom-right-radius:3px;-moz-border-bottom-left-radius:3px;border-bottom-right-radius:3px;border-bottom-left-radius:3px;-webkit-box-shadow:0 1px 2px rgba(0,0,0,.5);box-shadow:0 1px 2px rgba(0,0,0,.5);-moz-transform:translateY(-100px);-webkit-transform:translateY(-100px);-ms-transform:translateY(-100px);-o-transform:translateY(-100px);transform:translateY(-100px)}
+.loading,a{-webkit-transition:all 450ms cubic-bezier(.395,.425,.015,1) 0s}
+.owl-theme .owl-controls .owl-buttons .owl-next,.owl-theme .owl-controls .owl-buttons .owl-prev{width:25px;height:25px;position:absolute;top:calc(50% - 20px);background-image:url(../images/sprite.png)}
+.humane p,.humane ul,.humane-flatty p,.humane-flatty ul{margin:0;padding:0}
+.humane ul,.humane-flatty ul{list-style:none}
+.humane-flatty.humane-flatty-info,.humane.humane-flatty-info{background-color:#3498db;color:#FFF}
+.humane-flatty.humane-flatty-success,.humane.humane-flatty-success{background-color:#18bc9c;color:#FFF}
+.humane-flatty.humane-flatty-error,.humane.humane-flatty-error{background-color:#e74c3c;color:#FFF}
+.humane-animate,.humane-flatty.humane-flatty-animate{opacity:1;-moz-transform:translateY(0);-webkit-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}
+.humane-animate:hover,.humane-flatty.humane-flatty-animate:hover{opacity:.7}
+.humane-flatty.humane-flatty-js-animate,.humane-js-animate{opacity:1;-moz-transform:translateY(0);-webkit-transform:translateY(0);-ms-transform:translateY(0);-o-transform:translateY(0);transform:translateY(0)}
+.humane-flatty.humane-flatty-js-animate:hover,.humane-js-animate:hover{opacity:.7;filter:alpha(Opacity=70)}
 .owl-theme .owl-controls .owl-buttons .owl-prev{left:5px;background-position:0 -92px}
 .owl-theme .owl-controls .owl-buttons .owl-next{background-position:-35px -92px;right:5px}
 .owl-carousel{width:250px;display:inline-block}
@@ -470,6 +483,7 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .table-prices .table-wrapper table tr:nth-child(4){background-color:#a2dfff}
 .table-prices .table-wrapper table tr:nth-child(5){background-color:#baf5ff}
 .table-prices .table-wrapper table tr:nth-child(6){background-color:#bbffeb}
+.humane{font-family:"Roboto Condensed"}
 .order-title{color:#428bca;font-family:RobotoRegular;margin:1em auto;text-align:center;font-size:16px;font-weight:700;line-height:19px;text-transform:uppercase;position:relative;display:block;padding-left:25px;width:210px}
 .order-form .left-sb div label,.order-form .right-sb p{color:#333;font-family:"Roboto Condensed"}
 .order-title:before{position:absolute;background-position:-70px -92px;width:28px;height:22px;left:0;top:-2px}
@@ -518,13 +532,14 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .order-form .right-sb .total-price div:nth-child(2){text-align:left}
 .order-form .right-sb .total-price div{width:50%}
 }
-.order-form .right-sb .info-text{color:#696969;font-family:"Roboto Condensed";font-size:12px;font-weight:300;font-style:italic}
+.order-form .right-sb .info-text div,.order-form .right-sb .info-text p{display:inline-block;margin:0;width:auto;color:#696969;font-family:"Roboto Condensed";font-size:12px;font-weight:300;font-style:italic}
 .order-form .right-sb .btn-submit{background-color:#428bca;border:1px solid #357ebd;border-radius:5px;color:#fff;font-family:RobotoRegular;font-size:12px;font-weight:700;line-height:19px;padding:10px 0;width:170px;display:block;margin:1em auto;text-transform:uppercase}
 .icon-order-email,.icon-order-phone,.icon-order-user{background-image:url(../images/sprite.png);width:40px;height:36px;position:absolute;content:"";left:0;top:2px}
 .order-form .right-sb .btn-submit:hover{cursor:pointer}
 .icon-order-user{background-position:0 -46px}
 .icon-order-email{background-position:0 0}
 .icon-order-phone{background-position:-50px 0}
+.success_message{width:220px;height:auto;padding:10px;text-align:center;border:1px solid #6dbee4;border-radius:5px;margin:1em auto;font-family:"Roboto Condensed";font-size:18px}
 .trim{position:relative;-webkit-transform:translateZ(0);transform:translateZ(0);box-shadow:0 0 1px transparent}
 .trim:before{content:'';position:absolute;border:2px solid #fff;border-radius:5px;top:4px;left:4px;right:4px;bottom:4px;opacity:0;-ms-filter:"progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";filter:alpha(opacity=0);-webkit-transition-duration:.3s;transition-duration:.3s;-webkit-transition-property:opacity;transition-property:opacity}
 .trim:hover:before{opacity:1;-ms-filter:none;-webkit-filter:none;filter:none}

@@ -3,19 +3,7 @@ return [
     'vendorPath' => dirname(dirname(__DIR__)) . '/vendor',
     'components' => [
         'cache' => [
-            'class' => 'yii\caching\MemCache',
-            'useMemcached' => true,
-            'keyPrefix' => 'akk_',
-            'servers' => [
-                [
-                    'host' => 'localhost',
-                    'port' => 11211,
-                    'weight' => 60,
-                ],
-            ],
+            'class' => 'yii\caching\FileCache',
         ],
-        //'cache' => [
-        //    'class' => 'yii\caching\FileCache',
-        //],
     ],
 ];

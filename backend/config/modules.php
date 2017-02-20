@@ -24,4 +24,7 @@ return [
     'accommodation_options' => [
         'class' => 'backend\modules\accommodation_options\AccommodationOptions',
     ],
+    'settings' => [
+        'class' => 'backend\modules\settings\Settings',
+    ],
 ];

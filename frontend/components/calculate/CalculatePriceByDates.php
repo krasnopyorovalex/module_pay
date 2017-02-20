@@ -30,10 +30,17 @@ class CalculatePriceByDates implements CalculateInterface
         $interval = new \DateInterval('P1D');
         $checkRange = new \DatePeriod($this->dateStart, $interval, $this->dateEnd);
 
-        foreach($item['periods'] as $datePeriod){
+        foreach($item['periods'] as $datePeriod)
+        {
             $this->inRange($checkRange, $datePeriod);
         }
-        $item['price'] = $this->calculate($item['periodsVias']);
+        $formatter = new \IntlDateFormatter('ru_RU', \IntlDateFormatter::FULL, \IntlDateFormatter::FULL);
+        $formatter->setPattern('d MMMM');
+        $item['dateStart'] = $formatter->format($this->dateStart);
+        $item['dateEnd'] = $formatter->format($this->dateEnd);
+        $item['priceFull'] = $this->calculate($item['periodsVias']);
+        $item['price'] = 0;
+        $item['diffDays'] = $this->diffDays->days;
         return $item;
     }
 

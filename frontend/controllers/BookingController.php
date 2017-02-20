@@ -2,8 +2,11 @@
 namespace frontend\controllers;
 
 use frontend\components\booking\BookingService;
+use frontend\components\calculate\CalculatePriceByAccommodationOptions;
 use frontend\components\calculate\CalculatePriceByDates;
+use frontend\components\calculate\CalculatePriceByDiscounts;
 use frontend\components\repository\RepositoryInterface;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 /**
@@ -11,6 +14,8 @@ use yii\web\Controller;
  */
 class BookingController extends Controller
 {
+
+    private $params = [];
 
     /**
      * @var RepositoryInterface
@@ -28,16 +33,35 @@ class BookingController extends Controller
      */
     public function actionIndex()
     {
-        return $this->asJson($this->roomRepository->getAll());
-    }
-
-    public function actionTest()
-    {
         $calculator = new CalculatePriceByDates(
-            new \DateTime('2017-05-24'),
-            new \DateTime('2017-05-27')
+            new \DateTime(\Yii::$app->request->get('arrivalDate')),
+            new \DateTime(\Yii::$app->request->get('departureDate'))
+        );
+        $calculator = new CalculatePriceByAccommodationOptions(
+            \Yii::$app->request->get('adultsChilds'),
+            \Yii::$app->request->get('accommodationOptions'),
+            $calculator
+        );
+        $calculator = new CalculatePriceByDiscounts(
+            new \DateTime($this->params['arrivalDate']),
+            new \DateTime($this->params['departureDate']),
+            $calculator
         );
         $bookingService = (new BookingService($this->roomRepository, $calculator))->load();
-        print_r($bookingService);
+
+        return $this->asJson(ArrayHelper::merge([
+            'rooms' => $bookingService
+        ],[
+            'params' => $this->params
+        ]));
+    }
+
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        $this->params = \Yii::$app->request->queryParams;
+        return true;
     }
 }

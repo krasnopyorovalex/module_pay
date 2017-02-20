@@ -45,7 +45,7 @@ return [
             'rules' => [
                 '/' => 'site',
                 'get-rooms' => 'booking',
-                'test-rooms' => 'booking/test',
+                'order-check' => 'order'
             ],
         ],
     ],

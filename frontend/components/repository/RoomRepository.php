@@ -3,6 +3,7 @@
 namespace frontend\components\repository;
 
 use common\models\Rooms;
+use yii\helpers\ArrayHelper;
 
 class RoomRepository implements RepositoryInterface
 {
@@ -16,19 +17,34 @@ class RoomRepository implements RepositoryInterface
     {
         $this->data = Rooms::find()->with([
             'periods',
+            'tariff',
             'periodsVias',
+            'discounts',
             'roomsAttributes',
             'roomsAttributesVias',
-            'tariff',
             'roomsImages',
             'paymentMethods',
             'accommodationOptions',
-            'discounts'
+            'accommodationOptionsVias'
         ])->asArray()->all();
     }
 
     public function getAll()
     {
         return $this->data;
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getById($id)
+    {
+        $result = ArrayHelper::index($this->data,'id');
+        if(!isset($result[$id]))
+        {
+            new \Exception('Not Fount By id');
+        }
+        return $result[$id];
     }
 }

@@ -4,6 +4,8 @@ namespace frontend\controllers;
 use common\models\AccommodationOptions;
 use common\models\InfoMessages;
 use common\models\Rooms;
+use common\models\Settings;
+use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
 /**
@@ -12,6 +14,7 @@ use yii\web\Controller;
 class SiteController extends Controller
 {
 
+    public $settings = [];
     /**
      * @return string
      */
@@ -28,4 +31,14 @@ class SiteController extends Controller
     {
         return $this->render('error');
     }
+
+    public function beforeAction($action)
+    {
+        if (!parent::beforeAction($action)) {
+            return false;
+        }
+        $this->settings = ArrayHelper::map(Settings::find()->asArray()->all(), 'sys_name', 'value');
+        return true;
+    }
+
 }
