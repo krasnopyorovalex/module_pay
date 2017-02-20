@@ -23,12 +23,18 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
+        $dateStartWork = (new \DateTime($this->settings['date_start']))->format('d.m.Y');
+        $today = (new \DateTime())->format('d.m.Y');
+        $dateStart = ( (strtotime($dateStartWork) < strtotime($today)) ? $today : $dateStartWork );
+
         return $this->render('index', [
             'info_messages' => InfoMessages::find()->all(),
             'accommodation_options' => AccommodationOptions::find()->all(),
             'max_count_adults' => Rooms::find()->select('max_peoples_adults')->max('max_peoples_adults'),
             'tariffs' => Tariffs::find()->all(),
-            'payment_methods' => PaymentMethods::find()->all()
+            'payment_methods' => PaymentMethods::find()->all(),
+            'dateStart' => $dateStart,
+            'dateEnd' => date('d.m.Y',strtotime($dateStart . "+1 days"))
         ]);
     }
 

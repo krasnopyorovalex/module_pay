@@ -8,6 +8,8 @@ use frontend\assets\VueAsset;
 /* @var $tariffs array */
 /* @var $accommodation_options array */
 /* @var $max_count_adults integer */
+/* @var $dateStart string */
+/* @var $dateEnd string */
 
 VueAsset::register($this);
 ?>
@@ -19,12 +21,12 @@ VueAsset::register($this);
                 <div class="params-box_dates">
                     <div>
                         <label for="arrival-date">Дата заезда:</label>
-                        <input type="text" id="arrival-date" name="arrivalDate" data-max_date="<?= $this->context->settings['date_end']?>" value="<?= date('d.m.Y')?>">
+                        <input type="text" id="arrival-date" name="arrivalDate" data-min_date="<?= $dateStart?>" data-max_date="<?= $this->context->settings['date_end']?>" value="<?= $dateStart?>">
                         <i class="icon-calendar"></i>
                     </div>
                     <div>
                         <label for="departure-date">Дата выезда:</label>
-                        <input type="text" id="departure-date" name="departureDate" value="<?= date('d.m.Y',strtotime(date('d.m.Y') . "+1 days"))?>">
+                        <input type="text" id="departure-date" name="departureDate" value="<?= $dateEnd?>">
                         <i class="icon-calendar"></i>
                     </div>
                 </div>
