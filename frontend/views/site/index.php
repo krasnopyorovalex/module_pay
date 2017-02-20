@@ -4,6 +4,8 @@ use frontend\assets\VueAsset;
 
 /* @var $this \yii\web\View */
 /* @var $info_messages array */
+/* @var $payment_methods array */
+/* @var $tariffs array */
 /* @var $accommodation_options array */
 /* @var $max_count_adults integer */
 
@@ -95,13 +97,13 @@ VueAsset::register($this);
                             </div>
                             <div class="small_desc_list_item" v-if="room.tariff">
                                 <span>Тариф:</span>
-                                <span><a href="#">{{ room.tariff.name }}</a></span>
+                                <span><a :href="'#tariff-'+ room.tariff.id" class="info-popup">{{ room.tariff.name }}</a></span>
                             </div>
                             <div class="small_desc_list_item">
                                 <span>Способ оплаты:</span>
                                 <span class="payments_methods">
                                     <span v-for="item in room.paymentMethods">
-                                        <a href="#">{{ item.name }}</a>
+                                        <a :href="'#payment_method-'+ item.id" class="info-popup">{{ item.name }}</a>
                                     </span>
                                 </span>
                             </div>
@@ -235,5 +237,23 @@ VueAsset::register($this);
             <?= $im->description?>
         </div>
         <!-- /#info-<?= $im->id?> -->
+    <?php endforeach;?>
+<?php endif;?>
+
+<?php if($tariffs):?>
+    <?php foreach ($tariffs as $tariff):?>
+        <div id="tariff-<?= $tariff->id?>" class="info-message">
+            <?= $tariff->description?>
+        </div>
+        <!-- /#tariff-<?= $tariff->id?> -->
+    <?php endforeach;?>
+<?php endif;?>
+
+<?php if($payment_methods):?>
+    <?php foreach ($payment_methods as $payment_method):?>
+        <div id="payment_method-<?= $payment_method->id?>" class="info-message">
+            <?= $payment_method->description?>
+        </div>
+        <!-- /#payment_method-<?= $payment_method->id?> -->
     <?php endforeach;?>
 <?php endif;?>

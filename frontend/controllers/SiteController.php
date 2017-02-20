@@ -1,10 +1,13 @@
 <?php
+
 namespace frontend\controllers;
 
 use common\models\AccommodationOptions;
 use common\models\InfoMessages;
+use common\models\PaymentMethods;
 use common\models\Rooms;
 use common\models\Settings;
+use common\models\Tariffs;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
@@ -23,7 +26,9 @@ class SiteController extends Controller
         return $this->render('index', [
             'info_messages' => InfoMessages::find()->all(),
             'accommodation_options' => AccommodationOptions::find()->all(),
-            'max_count_adults' => Rooms::find()->select('max_peoples_adults')->max('max_peoples_adults')
+            'max_count_adults' => Rooms::find()->select('max_peoples_adults')->max('max_peoples_adults'),
+            'tariffs' => Tariffs::find()->all(),
+            'payment_methods' => PaymentMethods::find()->all()
         ]);
     }
 
