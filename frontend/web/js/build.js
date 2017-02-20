@@ -42,6 +42,8 @@ new Vue({
                   return jQuery('.order-form').html(data);
               }
           });
+        } else {
+          humane.log("Заполните все поля для завершения бронирования");
         }
       },
       showOrder: function(room){
