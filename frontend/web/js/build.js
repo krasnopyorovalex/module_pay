@@ -31,7 +31,7 @@ new Vue({
             'message': this.message,
             'params': this.params,
             'roomId': this.checkedRoom.id,
-            'price': this.checkedRoom.priceFull,
+            'price': this.checkedRoom.price,
             'diffDays': this.checkedRoom.diffDays
           };
           jQuery.ajax({
