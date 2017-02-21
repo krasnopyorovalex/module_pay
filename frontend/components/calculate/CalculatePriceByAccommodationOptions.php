@@ -37,7 +37,9 @@ class CalculatePriceByAccommodationOptions implements CalculateInterface
         {
             if($this->accommodationOptions[$accommodationOption['id']])
             {
-                $item['priceFull'] += $this->accommodationOptions[$accommodationOption['id']] * $this->prices[$accommodationOption['id']] * $item['diffDays'];
+                $this->prices[$accommodationOption['id']]
+                    ? ($item['priceFull'] += $this->accommodationOptions[$accommodationOption['id']] * $this->prices[$accommodationOption['id']] * $item['diffDays'])
+                    : $item['priceFull'] = 0;
             }
         }
         return $item;
