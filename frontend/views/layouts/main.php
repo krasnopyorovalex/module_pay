@@ -22,7 +22,7 @@ AppAsset::register($this);
 <?php $this->beginBody() ?>
 <header>
     <div>
-        <?= Html::img('/userfiles/'.$this->context->settings['logo'], ['alt' => 'Отель Сантурина', 'title' => 'Отель Сантурина'])?>
+        <?= Html::a(Html::img('/userfiles/'.$this->context->settings['logo'], ['alt' => 'Отель Сантурина', 'title' => 'Отель Сантурина']),$this->context->settings['link_home'])?>
         <span><?= $this->context->settings['phone']?></span>
     </div>
 </header>
