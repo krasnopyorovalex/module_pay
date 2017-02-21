@@ -458,7 +458,6 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 }
 .table-prices .table-prices-outer{background:#fff;position:relative;padding:.6em}
 .table-prices .table-prices-outer:after{background:#fff;box-shadow:1px 1px 0 0 #bababc;content:"";height:.75em;position:absolute;-webkit-transform:rotate(-45deg);transform:rotate(-45deg);width:.75em;z-index:2;bottom:auto;left:auto;margin-left:0;right:-.38em;top:54%}
-.order-form .right-sb .total-price div span:after,.order-title:before{content:"";background-image:url(../images/sprite.png)}
 .table-prices .title{color:#e0af6a;font-family:RobotoRegular;font-size:16px;font-weight:700;text-transform:uppercase}
 .table-prices .icons-info{margin:1em 0;font-family:RobotoRegular;font-size:16px;font-weight:400}
 .table-prices .icons-info-item{width:45%;display:inline-block}
@@ -485,7 +484,7 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .humane{font-family:"Roboto Condensed"}
 .order-title{color:#428bca;font-family:RobotoRegular;margin:1em auto;text-align:center;font-size:16px;font-weight:700;line-height:19px;text-transform:uppercase;position:relative;display:block;padding-left:25px;width:210px}
 .order-form .left-sb div label,.order-form .right-sb p{color:#333;font-family:"Roboto Condensed"}
-.order-title:before{position:absolute;background-position:-70px -92px;width:28px;height:22px;left:0;top:-2px}
+.order-title:before{position:absolute;content:"";background-image:url(../images/sprite.png);background-position:-70px -92px;width:28px;height:22px;left:0;top:-2px}
 .order-form{background-color:#fff;border:1px solid #dfe7f0;border-radius:9px;margin-bottom:1em;zoom:1;width:auto;max-width:1170px;float:none;display:block;margin-right:auto;margin-left:auto;padding-left:0;padding-right:0}
 .order-form:after,.order-form:before{content:"";display:table}
 .order-form form{width:auto;max-width:100%}
@@ -522,7 +521,6 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .order-form .right-sb .total-price div:after,.order-form .right-sb .total-price div:before{content:"";display:table}
 .order-form .right-sb .total-price div:after{clear:both}
 .order-form .right-sb .total-price div span{color:#dc8915;font-family:RobotoRegular;font-size:22px;font-weight:400;position:relative}
-.order-form .right-sb .total-price div span:after{position:absolute;background-position:-142px -60px;width:18px;height:19px;right:-25px}
 @media only screen and (max-width:980px){.order-form .right-sb .total-price div span{font-size:20px}
 }
 .order-form .right-sb .total-price div:nth-child(2){text-align:center;color:#979797;font-family:RobotoRegular;font-size:16px;line-height:32px;font-weight:400;text-decoration:line-through}
