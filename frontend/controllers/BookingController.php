@@ -2,10 +2,7 @@
 namespace frontend\controllers;
 
 use frontend\components\booking\BookingService;
-use frontend\components\calculate\CalculatePriceByAccommodationOptions;
-use frontend\components\calculate\CalculatePriceByDates;
 use frontend\components\calculate\CalculatePriceByDay;
-use frontend\components\calculate\CalculatePriceByDiscounts;
 use frontend\components\repository\RepositoryInterface;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
