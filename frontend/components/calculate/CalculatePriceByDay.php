@@ -7,6 +7,8 @@ use yii\helpers\ArrayHelper;
 class CalculatePriceByDay implements CalculateInterface
 {
 
+    const IS_EARLY = 1;
+
     private $dateStart;
     private $dateEnd;
     private $adultsChilds;
@@ -113,12 +115,24 @@ class CalculatePriceByDay implements CalculateInterface
      */
     private function checkDiscounts($day, $price, $item)
     {
+        $today = strtotime((new \DateTime())->format('Y-m-d'));
         $day = strtotime($day->format('Y-m-d'));
         $percent = 0;
         foreach ($item['discounts'] as $discount)
         {
-            if( (strtotime($discount['date_start']) <= $day) && ($day <= strtotime($discount['date_end'])) )
-            {
+            if(
+                ($discount['is_early_booking'] == self::IS_EARLY) &&
+                (strtotime($discount['date_start']) <= $today) &&
+                ($today <= strtotime($discount['date_end']))
+            ) {
+                $percent += $discount['value'];
+                echo $discount['name'].'<br />';
+                exit;
+            } elseif(
+                ($discount['is_early_booking'] != self::IS_EARLY) &&
+                (strtotime($discount['date_start']) <= $day) &&
+                ($day <= strtotime($discount['date_end']))
+            ) {
                 $percent += $discount['value'];
             }
         }
