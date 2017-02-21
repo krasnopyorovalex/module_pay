@@ -144,7 +144,6 @@ VueAsset::register($this);
                         <!-- /.economy-info -->
                         <div class="total-price">
                             Итого: <span>{{ parseInt(room.price) | currency '' 0 }}</span> руб.
-                            <i class="icon-info"></i>
                         </div>
                         <!-- /.total-price -->
                         <div class="discounts-info">

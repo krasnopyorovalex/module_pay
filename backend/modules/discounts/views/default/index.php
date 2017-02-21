@@ -22,6 +22,7 @@ $this->params['breadcrumbs'][] = $this->context->module->params['name'];
                                 'name',
                                 'date_start:date',
                                 'date_end:date',
+                                'value',
                                 [
                                     'class' => 'yii\grid\ActionColumn',
                                     'header' => 'Действия',
