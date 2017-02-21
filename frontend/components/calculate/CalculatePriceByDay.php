@@ -126,8 +126,6 @@ class CalculatePriceByDay implements CalculateInterface
                 ($today <= strtotime($discount['date_end']))
             ) {
                 $percent += $discount['value'];
-                echo $discount['name'].'<br />';
-                exit;
             } elseif(
                 ($discount['is_early_booking'] != self::IS_EARLY) &&
                 (strtotime($discount['date_start']) <= $day) &&
