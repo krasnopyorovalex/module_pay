@@ -114,14 +114,15 @@ class CalculatePriceByDay implements CalculateInterface
     private function checkDiscounts($day, $price, $item)
     {
         $day = strtotime($day->format('Y-m-d'));
+        $percent = 0;
         foreach ($item['discounts'] as $discount)
         {
             if( (strtotime($discount['date_start']) <= $day) && ($day <= strtotime($discount['date_end'])) )
             {
-                $price = $price * (1 - $discount['value'] / 100);
+                $percent += $discount['value'];
             }
         }
-        return $price;
+        return $price * (1 - $percent / 100);
     }
 
 }
