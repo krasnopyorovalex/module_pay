@@ -78,6 +78,39 @@ $this->params['breadcrumbs'][] = $this->context->module->params['name'];
                             </div>
                         </div>
                     </div>
+
+                    <div class="box-header">
+                        <ul class="nav nav-tabs nav-tabs-left">
+                            <li class="active"><a href="#link_home" data-toggle="tab"><span>Ссылка на сайт</span></a></li>
+                            <li><a href="#logo" data-toggle="tab"><span>Логотип</span></a></li>
+                        </ul>
+                    </div>
+
+                    <div class="box-content padded">
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="link_home">
+                                <?= Html::beginForm(Url::toRoute(['default/update', 'id' => $settings['link_home']['id']]), 'post', ['class' => 'fill-up']) ?>
+                                <div class="form-group">
+                                    <?= Html::input('text', 'value', $settings['link_home']['value'], ['class'=>'form-control'])?>
+                                </div>
+                                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-blue']) ?>
+                                <?= Html::endForm() ?>
+                            </div>
+                            <div class="tab-pane" id="logo">
+                                <?= Html::beginForm(Url::toRoute(['default/update', 'id' => $settings['logo']['id']]), 'post', ['enctype' => 'multipart/form-data', 'class' => 'fill-up']) ?>
+                                <div class="form-group">
+                                    <?php if($settings['logo']['value']):?>
+                                        <?= Html::img('/userfiles/' . $settings['logo']['value'])?>
+                                        <p></p>
+                                    <?php endif;?>
+                                    <?= Html::fileInput('file', '', ['class' => 'form-control']) ?>
+                                </div>
+                                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-blue']) ?>
+                                <?= Html::endForm() ?>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </div>
         </div>

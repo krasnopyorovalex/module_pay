@@ -22,6 +22,8 @@ class m170220_073038_settings extends Migration
         $this->insert('{{%settings}}',['sys_name' => 'email','value' => '']);
         $this->insert('{{%settings}}',['sys_name' => 'success_message','value' => '']);
         $this->insert('{{%settings}}',['sys_name' => 'empty_message','value' => '']);
+        $this->insert('{{%settings}}',['sys_name' => 'link_home','value' => '']);
+        $this->insert('{{%settings}}',['sys_name' => 'logo','value' => '']);
     }
 
     public function down()

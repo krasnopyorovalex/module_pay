@@ -3,6 +3,7 @@
 namespace common\models;
 
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * This is the model class for table "settings".
@@ -13,6 +14,11 @@ use Yii;
  */
 class Settings extends \yii\db\ActiveRecord
 {
+    /**
+     * @var UploadedFile
+     */
+    public $file;
+
     /**
      * @inheritdoc
      */
@@ -30,6 +36,7 @@ class Settings extends \yii\db\ActiveRecord
             [['sys_name'], 'required'],
             [['value'], 'string'],
             [['sys_name'], 'string', 'max' => 128],
+            [['file'], 'file', 'skipOnEmpty' => true],
         ];
     }
 
@@ -43,5 +50,16 @@ class Settings extends \yii\db\ActiveRecord
             'sys_name' => 'Sys Name',
             'value' => 'Value',
         ];
+    }
+
+    public function upload()
+    {
+        if ($this->validate()) {
+            $this->value = $this->file->baseName . '.' . $this->file->extension;
+            $this->save();
+            return $this->file->saveAs(Yii::getAlias('@frontend/web/userfiles/').$this->file->baseName . '.' . $this->file->extension);
+        } else {
+            return false;
+        }
     }
 }

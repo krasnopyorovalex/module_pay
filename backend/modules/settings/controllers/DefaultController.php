@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use yii\filters\VerbFilter;
 use common\models\Settings;
 use Yii;
+use yii\web\UploadedFile;
 
 /**
  * Default controller for the `settings` module
@@ -55,6 +56,12 @@ class DefaultController extends SiteController
     {
         $model = Settings::findOne($id);
         if(Yii::$app->request->isPost) {
+
+            if ($model->file = UploadedFile::getInstanceByName('file')) {
+                $model->upload();
+                return $this->redirect(Yii::$app->homeUrl . $this->module->id);
+            }
+
             $model->value = Yii::$app->request->post('value');
             $model->save();
         }
