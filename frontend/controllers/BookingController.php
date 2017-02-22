@@ -38,7 +38,7 @@ class BookingController extends Controller
             'accommodationOptions' => \Yii::$app->request->get('accommodationOptions')
         ];
         $calculator = new CalculatePriceByDay($params);
-        $bookingService = (new BookingService($this->roomRepository, $calculator))->load();
+        $bookingService = (new BookingService($this->roomRepository, $calculator))->run();
 
         return $this->asJson(ArrayHelper::merge([
             'rooms' => $bookingService

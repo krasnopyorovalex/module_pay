@@ -27,7 +27,7 @@ class BookingService implements BookingInterface
         $this->calculator = $calculator;
     }
 
-    public function load()
+    public function run()
     {
         foreach ($this->roomRepository->getAll() as $item)
         {

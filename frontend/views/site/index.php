@@ -230,6 +230,11 @@ VueAsset::register($this);
     </div>
     <!-- /.order-template -->
 
+    <div class="empty__message" v-if="!count">
+        <?= $this->context->settings['empty_message']?>
+    </div>
+    <!-- /.empty__message -->
+
 </div>
 
 <?php if($info_messages):?>

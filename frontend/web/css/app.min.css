@@ -197,7 +197,7 @@ summary{display:list-item}
 .fancybox-lock,.fancybox-lock body{overflow:hidden!important}
 .fancybox-lock{width:auto}
 .fancybox-lock-test{overflow-y:hidden!important}
-.order-form,.owl-carousel .item{overflow:hidden}
+.order-form,.owl-carousel .item,.rooms-box{overflow:hidden}
 .fancybox-overlay{position:absolute;top:0;left:0;overflow:hidden;display:none;z-index:8010;background:url(/images/fancybox_overlay.png)}
 .fancybox-overlay-fixed{position:fixed;bottom:0;right:0}
 .fancybox-lock .fancybox-overlay{overflow:auto;overflow-y:scroll}
@@ -466,6 +466,7 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .table-prices .icons-info-item:nth-child(2){color:#2cb7ff}
 .table-prices .icons-info-item:nth-child(4){color:#20edd2}
 .table-prices .price-box{color:transparent;font-family:Roboto;font-size:16px;line-height:22px;margin:1em 0;text-align:right}
+.empty__message,.order-title{text-align:center}
 .table-prices .price-box .price{color:#979797}
 .table-prices .price-box .price-discount{font-size:16px;font-weight:400;color:#333}
 .table-prices .price-box .price-discount span{text-decoration:line-through;color:#e0af6a;font-weight:700}
@@ -482,7 +483,7 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .table-prices .table-wrapper table tr:nth-child(5){background-color:#baf5ff}
 .table-prices .table-wrapper table tr:nth-child(6){background-color:#bbffeb}
 .humane{font-family:"Roboto Condensed"}
-.order-title{color:#428bca;font-family:RobotoRegular;margin:1em auto;text-align:center;font-size:16px;font-weight:700;line-height:19px;text-transform:uppercase;position:relative;display:block;padding-left:25px;width:210px}
+.order-title{color:#428bca;font-family:RobotoRegular;margin:1em auto;font-size:16px;font-weight:700;line-height:19px;text-transform:uppercase;position:relative;display:block;padding-left:25px;width:210px}
 .order-form .left-sb div label,.order-form .right-sb p{color:#333;font-family:"Roboto Condensed"}
 .order-title:before{position:absolute;content:"";background-image:url(../images/sprite.png);background-position:-70px -92px;width:28px;height:22px;left:0;top:-2px}
 .order-form{background-color:#fff;border:1px solid #dfe7f0;border-radius:9px;margin-bottom:1em;zoom:1;width:auto;max-width:1170px;float:none;display:block;margin-right:auto;margin-left:auto;padding-left:0;padding-right:0}

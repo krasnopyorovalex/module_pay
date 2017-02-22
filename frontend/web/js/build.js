@@ -18,7 +18,8 @@ new Vue({
         name: '',
         email: '',
         phone: '',
-        message: ''
+        message: '',
+        count: 1
     },
     methods: {
       onSubmit: function(){
@@ -62,6 +63,17 @@ new Vue({
         } else {
           humane.log("Введите даты заезда и выезда");
         }
+      }
+    },
+    computed: {
+      count: function () {
+        var is_show = 0;
+        this.rooms.map(function(item){
+            if(item.priceFull){
+              is_show++;
+            }
+        });
+        return is_show;
       }
     },
     created: function() {
