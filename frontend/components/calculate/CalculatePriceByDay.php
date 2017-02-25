@@ -44,6 +44,15 @@ class CalculatePriceByDay implements CalculateInterface
         $item['dateStart'] = $formatter->format($this->dateStart);
         $item['dateEnd'] = $formatter->format($this->dateEnd);
 
+        //////////remove discount if elapsed date
+        $today = strtotime((new \DateTime())->format('Y-m-d'));
+        foreach ($item['discounts'] as $key => $discount)
+        {
+            if($today > strtotime($discount['date_end']))
+                unset($item['discounts'][$key]);
+        }
+        //////////
+
         $pricesList = [];
         $pricesFullList = [];
         foreach ($checkRange as $day)
@@ -118,7 +127,7 @@ class CalculatePriceByDay implements CalculateInterface
         $today = strtotime((new \DateTime())->format('Y-m-d'));
         $day = strtotime($day->format('Y-m-d'));
         $percent = 0;
-        foreach ($item['discounts'] as $discount)
+        foreach ($item['discounts'] as $key => $discount)
         {
             if(
                 ($discount['is_early_booking'] == self::IS_EARLY) &&
