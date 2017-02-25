@@ -329,12 +329,13 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 #calculate-form .params-box_calculate_cost div.calculate:hover{cursor:pointer}
 #calculate-form .params-box_calculate_cost div.calculate span.loading{-webkit-transition:all 450ms cubic-bezier(.395,.425,.015,1) 0s;transition:all 450ms cubic-bezier(.395,.425,.015,1) 0s;visibility:hidden}
 #calculate-form .params-box_calculate_cost div.calculate .icon-rub{position:absolute;left:15px}
+.info-box .info-box-item,.rooms-box,.rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item .payments_methods>span{position:relative}
 @media only screen and (max-width:1160px){#calculate-form .params-box_calculate_cost div.calculate{margin:5.2em auto 0}
 }
 @media only screen and (max-width:932px){#calculate-form .params-box_calculate_cost div.calculate{margin:1em auto}
 }
 .info-box{display:table;margin:21px 0}
-.info-box .info-box-item{display:inline-block;position:relative;padding-left:1.8em}
+.info-box .info-box-item{display:inline-block;padding-left:1.8em}
 .info-box .info-box-item+.info-box-item{margin-left:1em}
 @media only screen and (max-width:750px){#calculate-form .params-box_calculate_cost div.calculate{max-width:190px;text-align:right}
 #calculate-form .params-box_calculate_cost div.calculate .icon-rub{left:12px}
@@ -345,7 +346,7 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 }
 .info-box .info-box-item a{color:#428bca;font-family:RobotoRegular;font-size:13.5px;font-size:.84375rem;font-weight:700;line-height:18px;text-decoration:underline;text-transform:uppercase}
 .info-box .info-box-item a:hover{text-decoration:none}
-.rooms-box{padding-bottom:60px}
+.rooms-box{padding-bottom:60px;display:none}
 .rooms-box .rooms-box_item+.rooms-box_item{margin-top:1em}
 .rooms-box .rooms-box_item{background-color:#f8f8f8;border:1px solid #dfe7f0;border-radius:9px;position:relative;zoom:1;max-width:1170px;float:none;margin-right:auto;margin-left:auto;padding-left:0;padding-right:0;width:100%;display:table}
 .rooms-box .rooms-box_item:after,.rooms-box .rooms-box_item:before{content:"";display:table}
@@ -368,7 +369,6 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .title{color:#428bca;font-family:"Roboto Condensed";font-size:13.5px;font-size:.84375rem;font-weight:700;line-height:25px;text-decoration:underline;text-transform:uppercase}
 .rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item{font-size:14px;font-family:"Roboto Condensed"}
 .rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item span:first-child{line-height:25px;color:#333;font-weight:700}
-.rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item .payments_methods>span{position:relative}
 .rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item .payments_methods>span+span{padding-left:4px}
 .rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item .payments_methods>span+span:before{content:", ";position:absolute;left:-2px}
 .rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item div,.rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item p,.rooms-box .rooms-box_item .rooms-box_item_gallery_small_desc .wrap-padded .small_desc .small_desc_list_item span:last-child{display:inline-block;margin:0;color:#333;font-weight:400}
@@ -466,7 +466,6 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .table-prices .icons-info-item:nth-child(2){color:#2cb7ff}
 .table-prices .icons-info-item:nth-child(4){color:#20edd2}
 .table-prices .price-box{color:transparent;font-family:Roboto;font-size:16px;line-height:22px;margin:1em 0;text-align:right}
-.empty__message,.order-title{text-align:center}
 .table-prices .price-box .price{color:#979797}
 .table-prices .price-box .price-discount{font-size:16px;font-weight:400;color:#333}
 .table-prices .price-box .price-discount span{text-decoration:line-through;color:#e0af6a;font-weight:700}
@@ -483,7 +482,8 @@ header div span{display:block;color:#2b97cc;font-family:ArialRegular;font-size:2
 .table-prices .table-wrapper table tr:nth-child(5){background-color:#baf5ff}
 .table-prices .table-wrapper table tr:nth-child(6){background-color:#bbffeb}
 .humane{font-family:"Roboto Condensed"}
-.order-title{color:#428bca;font-family:RobotoRegular;margin:1em auto;font-size:16px;font-weight:700;line-height:19px;text-transform:uppercase;position:relative;display:block;padding-left:25px;width:210px}
+.empty__message{text-align:center;display:none}
+.order-title{color:#428bca;font-family:RobotoRegular;margin:1em auto;text-align:center;font-size:16px;font-weight:700;line-height:19px;text-transform:uppercase;position:relative;display:block;padding-left:25px;width:210px}
 .order-form .left-sb div label,.order-form .right-sb p{color:#333;font-family:"Roboto Condensed"}
 .order-title:before{position:absolute;content:"";background-image:url(../images/sprite.png);background-position:-70px -92px;width:28px;height:22px;left:0;top:-2px}
 .order-form{background-color:#fff;border:1px solid #dfe7f0;border-radius:9px;margin-bottom:1em;zoom:1;width:auto;max-width:1170px;float:none;display:block;margin-right:auto;margin-left:auto;padding-left:0;padding-right:0}
