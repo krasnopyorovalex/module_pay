@@ -105,12 +105,18 @@ class CalculatePriceByDay implements CalculateInterface
         $itemAccommodationOptions = ArrayHelper::index($item['accommodationOptionsVias'],'accommodation_option_id');
         foreach ($this->accommodationOptions as $key => $value)
         {
-            $price = ($value && isset($itemAccommodationOptions[$key]['value']))
-                ? ($price + $itemAccommodationOptions[$key]['value'] * $value)
-                : $price;
+            if($value && isset($itemAccommodationOptions[$key]['value']) && ($this->adultsChilds < $item['max_peoples_adults']))
+            {
+                $price = ($price - $itemAccommodationOptions[$key]['value'] * $value);
+            }
+            elseif( $value && isset($itemAccommodationOptions[$key]['value']) )
+            {
+                $price = ($price + $itemAccommodationOptions[$key]['value'] * $value);
+            }
+
             if($value && !isset($itemAccommodationOptions[$key]['value']))
             {
-                $price = 0;
+                return 0;
             }
         }
         return $price;
