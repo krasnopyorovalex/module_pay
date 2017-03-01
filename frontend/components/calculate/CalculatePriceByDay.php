@@ -114,7 +114,7 @@ class CalculatePriceByDay implements CalculateInterface
             {
                 $price = ($price - $itemAccommodationOptions[$key]['value'] * $value);
             }
-            elseif( $value && isset($itemAccommodationOptions[$key]['value']) )
+            elseif( $value && isset($itemAccommodationOptions[$key]['value']) && !$forIsBasicPlace[$key]['is_basic_place'] )
             {
                 $price = ($price + $itemAccommodationOptions[$key]['value'] * $value);
             }
