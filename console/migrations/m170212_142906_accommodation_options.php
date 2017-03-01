@@ -14,7 +14,9 @@ class m170212_142906_accommodation_options extends Migration
         $this->createTable('{{%accommodation_options}}', [
             'id' => $this->primaryKey(),
             'name' => $this->string()->notNull(),
-            'max_count' => $this->integer()->defaultValue(0)
+            'max_count' => $this->integer()->defaultValue(0),
+            'is_basic_place' => $this->smallInteger(1)->defaultValue(0),
+            'pos' => $this->integer()->defaultValue(0)
         ],$tableOptions);
 
         $this->createTable('{{%accommodation_options_via}}', [

@@ -28,9 +28,11 @@ $this->params['breadcrumbs'][] = $this->context->actions[$this->context->action-
 
                             <div class="col-md-9">
                                 <?= $form->field($model, 'name') ?>
+                                <?= $form->field($model, 'is_basic_place')->checkbox(['class' => 'iButton-icons'], false)->error(false) ?>
                             </div>
                             <div class="col-md-3">
                                 <?= $form->field($model, 'max_count') ?>
+                                <?= $form->field($model, 'pos') ?>
                             </div>
                         </div>
                         <?= $this->render('@backend/views/blocks/_actions')?>

@@ -10,6 +10,7 @@ use Yii;
  * @property integer $id
  * @property string $name
  * @property integer $max_count
+ * @property integer $is_basic_place
  *
  * @property AccommodationOptionsVia[] $accommodationOptionsVias
  * @property Rooms[] $rooms
@@ -31,7 +32,7 @@ class AccommodationOptions extends \yii\db\ActiveRecord
     {
         return [
             [['name'], 'required'],
-            [['max_count'], 'integer'],
+            [['max_count', 'is_basic_place', 'pos'], 'integer'],
             [['name'], 'string', 'max' => 255],
         ];
     }
@@ -45,6 +46,8 @@ class AccommodationOptions extends \yii\db\ActiveRecord
             'id' => 'ID',
             'name' => 'Название',
             'max_count' => 'Максимальное количество',
+            'is_basic_place' => 'Считать как основное место?',
+            'pos' => 'Позиция',
         ];
     }
 

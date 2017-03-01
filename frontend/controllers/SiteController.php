@@ -29,7 +29,7 @@ class SiteController extends Controller
 
         return $this->render('index', [
             'info_messages' => InfoMessages::find()->all(),
-            'accommodation_options' => AccommodationOptions::find()->all(),
+            'accommodation_options' => AccommodationOptions::find()->orderBy('pos')->all(),
             'max_count_adults' => Rooms::find()->select('max_peoples_adults')->max('max_peoples_adults'),
             'tariffs' => Tariffs::find()->all(),
             'payment_methods' => PaymentMethods::find()->all(),
