@@ -125,7 +125,7 @@ class CalculatePriceByDay implements CalculateInterface
 
             if(
                 $value && !isset($itemAccommodationOptions[$key]['value']) ||
-                ($forIsBasicPlace[$key]['is_basic_place'] && (($this->adultsChilds + $itemAccommodationOptions[$key]) < $item['max_peoples_adults']))
+                ($forIsBasicPlace[$key]['is_basic_place'] && (($this->adultsChilds + $value) > $item['max_peoples_adults']))
             )
             {
                 return 0;
