@@ -111,7 +111,7 @@ class Rooms extends ActiveRecord
      */
     public function getAccommodationOptions()
     {
-        return $this->hasMany(AccommodationOptions::className(), ['id' => 'accommodation_option_id'])->viaTable('{{%accommodation_options_via}}', ['room_id' => 'id']);
+        return $this->hasMany(AccommodationOptions::className(), ['id' => 'accommodation_option_id'])->viaTable('{{%accommodation_options_via}}', ['room_id' => 'id'])->orderBy('pos');
     }
 
     /**
