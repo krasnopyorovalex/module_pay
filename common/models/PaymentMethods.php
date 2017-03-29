@@ -44,7 +44,7 @@ class PaymentMethods extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
-            'description' => 'Description',
+            'description' => 'Описание',
         ];
     }
 

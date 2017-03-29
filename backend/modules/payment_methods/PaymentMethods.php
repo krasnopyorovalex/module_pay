@@ -21,7 +21,7 @@ class PaymentMethods extends Module implements ModelProviderInterface
     public function init()
     {
         parent::init();
-        $this->params['name'] = 'Методы оплаты';
+        $this->params['name'] = 'Способы оплаты';
         // custom initialization code goes here
     }
 
