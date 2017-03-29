@@ -24,6 +24,8 @@ class m170220_073038_settings extends Migration
         $this->insert('{{%settings}}',['sys_name' => 'empty_message','value' => '']);
         $this->insert('{{%settings}}',['sys_name' => 'link_home','value' => '']);
         $this->insert('{{%settings}}',['sys_name' => 'logo','value' => '']);
+        $this->insert('{{%settings}}',['sys_name' => 'date_start','value' => '']);
+        $this->insert('{{%settings}}',['sys_name' => 'date_end','value' => '']);
     }
 
     public function down()
