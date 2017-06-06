@@ -4,7 +4,7 @@
 /* @var $message \yii\mail\MessageInterface the message being composed */
 
 ?>
-<p><b>Данные заказика:</b></p>
+<p><b>Данные заказчика:</b></p>
 <p>Имя: <?= $model['name']?></p>
 <p>Email: <?= $model['email']?></p>
 <p>Телефон: <?= $model['phone']?></p>
