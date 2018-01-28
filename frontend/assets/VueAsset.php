@@ -11,7 +11,7 @@ class VueAsset extends AssetBundle
     public $css = [
     ];
     public $js = [
-        'js/build.min.js',
+        'js/build.js',
     ];
     public $depends = [
         'frontend\assets\AppAsset'

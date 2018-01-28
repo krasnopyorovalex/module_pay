@@ -13,7 +13,7 @@ use frontend\assets\VueAsset;
 
 VueAsset::register($this);
 ?>
-<div class="container" id="app">
+<div class="container">
 
     <div class="main__wrap" v-show="!checkedRoom">
         <div class="params-box" v-show="!checkedRoom">
