@@ -29,9 +29,11 @@ class AccommodationOptionsBehavior extends Behavior
         if($this->owner->attrArray){
             $this->owner->unlinkAll('accommodationOptions', true);
             foreach ($this->owner->aoArray as $key => $value){
+                $parts = explode('__',$key);
                 (new AccommodationOptionsVia([
                     'room_id' => $this->owner->id,
-                    'accommodation_option_id' => $key,
+                    'accommodation_option_id' => $parts[0],
+                    'period_id' => $parts[1],
                     'value' => $value
                 ]))->save();
             }

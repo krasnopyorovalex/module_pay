@@ -2,6 +2,7 @@
 
 namespace frontend\components\calculate;
 
+use common\models\Periods;
 use yii\helpers\ArrayHelper;
 
 class CalculatePriceByDay implements CalculateInterface
@@ -36,7 +37,7 @@ class CalculatePriceByDay implements CalculateInterface
     {
         $interval = new \DateInterval('P1D');
         $checkRange = new \DatePeriod($this->dateStart, $interval, $this->dateEnd);
-        $periodsValues = ArrayHelper::index($item['periodsVias'],'period_id');
+        $periodsValues = ArrayHelper::index($item['periodsVias'], 'period_id');
         $userCheckedAll = array_sum($this->accommodationOptions) + $this->adultsChilds;
 
         $formatter = new \IntlDateFormatter('ru_RU', \IntlDateFormatter::FULL, \IntlDateFormatter::FULL);
@@ -46,23 +47,26 @@ class CalculatePriceByDay implements CalculateInterface
 
         //////////remove discount if elapsed date
         $today = strtotime((new \DateTime())->format('Y-m-d'));
-        foreach ($item['discounts'] as $key => $discount)
-        {
-            if($today > strtotime($discount['date_end']))
+        foreach ($item['discounts'] as $key => $discount) {
+            if ($today > strtotime($discount['date_end'])) {
                 unset($item['discounts'][$key]);
+            }
         }
         //////////
 
         $pricesList = [];
         $pricesFullList = [];
-        foreach ($checkRange as $day)
-        {
+        foreach ($checkRange as $day) {
             $price = $this->inPeriods($day, $item, $periodsValues);
-            $priceFull = $price = $this->checkAccommodationOptions($price, $item, $userCheckedAll);
+
+            $priceFull = $price = $this->checkAccommodationOptions($price, $item, $userCheckedAll, $day);
+
             $price = $this->checkDiscounts($day, $price, $item);
-            array_push($pricesList,$price);
-            array_push($pricesFullList,$priceFull);
+
+            array_push($pricesList, $price);
+            array_push($pricesFullList, $priceFull);
         }
+
         $item['price'] = array_sum($pricesList);
         $item['priceFull'] = array_sum($pricesFullList);
         $item['diffDays'] = $this->diffDays->days;
@@ -79,10 +83,8 @@ class CalculatePriceByDay implements CalculateInterface
     private function inPeriods($day, $item, $periodsValues)
     {
         $day = strtotime($day->format('Y-m-d'));
-        foreach ($item['periods'] as $period)
-        {
-            if( (strtotime($period['date_start']) <= $day) && ($day <= strtotime($period['date_end'])) )
-            {
+        foreach ($item['periods'] as $period) {
+            if ((strtotime($period['date_start']) <= $day) && ($day <= strtotime($period['date_end']))) {
                 return $periodsValues[$period['id']]['value'];
             }
         }
@@ -93,41 +95,38 @@ class CalculatePriceByDay implements CalculateInterface
      * @param $price
      * @param $item
      * @param $userCheckedAll
-     * @return int
+     * @param $day
+     * @return float|int|mixed
      */
-    private function checkAccommodationOptions($price, $item, $userCheckedAll)
+    private function checkAccommodationOptions($price, $item, $userCheckedAll, $day)
     {
-        if( ($this->adultsChilds > $item['max_peoples_adults']) || ($userCheckedAll > $item['max_peoples']) )
-        {
+        if (($this->adultsChilds > $item['max_peoples_adults']) || ($userCheckedAll > $item['max_peoples'])) {
             return 0;
         }
 
-        $itemAccommodationOptions = ArrayHelper::index($item['accommodationOptionsVias'],'accommodation_option_id');
-        $forIsBasicPlace = ArrayHelper::index($item['accommodationOptions'],'id');
-        foreach ($this->accommodationOptions as $key => $value)
-        {
-            if(
-                $value && isset($itemAccommodationOptions[$key]['value']) &&
+        $forIsBasicPlace = ArrayHelper::index($item['accommodationOptions'], 'id');
+
+        foreach ($this->accommodationOptions as $key => $value) {
+            $priceAO = $this->getPriceAO($item, $day, $key);
+
+            if (
+                $value && isset($priceAO) &&
                 ($this->adultsChilds < $item['max_peoples_adults']) &&
                 $forIsBasicPlace[$key]['is_basic_place']
-            )
-            {
-                $price = ($price - $itemAccommodationOptions[$key]['value'] * $value);
-            }
-            elseif
+            ) {
+                $price = ($price - $priceAO * $value);
+            } elseif
             (
-                $value && isset($itemAccommodationOptions[$key]['value']) &&
+                $value && $priceAO &&
                 !$forIsBasicPlace[$key]['is_basic_place']
-            )
-            {
-                $price = ($price + $itemAccommodationOptions[$key]['value'] * $value);
+            ) {
+                $price = ($price + $priceAO * $value);
             }
 
-            if(
-                $value && !isset($itemAccommodationOptions[$key]['value']) ||
+            if (
+                $value && !isset($priceAO) ||
                 ($forIsBasicPlace[$key]['is_basic_place'] && (($this->adultsChilds + $value) > $item['max_peoples_adults']))
-            )
-            {
+            ) {
                 return 0;
             }
         }
@@ -145,15 +144,14 @@ class CalculatePriceByDay implements CalculateInterface
         $today = strtotime((new \DateTime())->format('Y-m-d'));
         $day = strtotime($day->format('Y-m-d'));
         $percent = 0;
-        foreach ($item['discounts'] as $key => $discount)
-        {
-            if(
+        foreach ($item['discounts'] as $key => $discount) {
+            if (
                 ($discount['is_early_booking'] == self::IS_EARLY) &&
                 (strtotime($discount['date_start']) <= $today) &&
                 ($today <= strtotime($discount['date_end']))
             ) {
                 $percent += $discount['value'];
-            } elseif(
+            } elseif (
                 ($discount['is_early_booking'] != self::IS_EARLY) &&
                 (strtotime($discount['date_start']) <= $day) &&
                 ($day <= strtotime($discount['date_end']))
@@ -164,4 +162,33 @@ class CalculatePriceByDay implements CalculateInterface
         return $price * (1 - $percent / 100);
     }
 
+    /**
+     * @param $room
+     * @param $day
+     * @param $keyAO
+     * @return int|mixed
+     */
+    private function getPriceAO($room, $day, $keyAO)
+    {
+        $periods = Periods::find()->asArray()->all();
+        $roomAOPrices = ArrayHelper::map(
+            $room['accommodationOptionsVias'],
+            function ($item) {
+                return $item['accommodation_option_id'] . '__' . $item['period_id'];
+            },
+            'value'
+        );
+
+        $day = strtotime($day->format('Y-m-d'));
+
+        foreach ($periods as $period) {
+            if (isset($roomAOPrices[$keyAO . '__' . $period['id']]) && (strtotime(
+                        $period['date_start']
+                    ) <= $day) && ($day <= strtotime($period['date_end']))) {
+                return $roomAOPrices[$keyAO . '__' . $period['id']];
+            }
+        }
+
+        return 0;
+    }
 }

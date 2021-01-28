@@ -7,6 +7,7 @@
 /* @var array $periods_array */
 /* @var array $discounts_array */
 /* @var array $ao_array */
+/* @var array $ao_room */
 
 use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
@@ -125,19 +126,32 @@ $this->params['breadcrumbs'][] = $this->context->actions[$this->context->action-
                                                         <!-- discounts room -->
                                                     </div>
                                                     <div class="tab-pane" id="ao">
-                                                        <!-- accommodation options room -->
-                                                        <?php if($ao_array):?>
+
+                                                        <!-- periods for room -->
+                                                        <?php if($periods_array):?>
                                                             <?= Html::beginTag('div', ['class' => 'attributes_product'])?>
-                                                            <?php foreach ($ao_array as $ao):?>
-                                                                <?= $form->field($model, 'aoArray['.$ao['id'].']')->textInput([
-                                                                    'value' => isset($ao_room[$ao['id']])
-                                                                        ? $ao_room[$ao['id']]
-                                                                        : ''
-                                                                ])->label($ao['name'])?>
+                                                            <?php foreach ($periods_array as $period):?>
+                                                                <?= Html::tag('div','с '.Yii::$app->formatter->asDate($period['date_start']) .' по '. Yii::$app->formatter->asDate($period['date_end']),['class' => 'ao__label']);?>
+
+                                                                <!-- accommodation options room -->
+                                                                <?php if($ao_array):?>
+                                                                    <?= Html::beginTag('div', ['class' => 'attributes_product'])?>
+                                                                    <?php foreach ($ao_array as $ao):?>
+                                                                        <?= $form->field($model, 'aoArray['.$ao['id'].'__'.$period['id'].']')->textInput([
+                                                                            'value' => (isset($ao_room[$ao['id'].'__'.$period['id']]))
+                                                                                ? $ao_room[$ao['id'].'__'.$period['id']]
+                                                                                : '',
+                                                                            'autocomplete' => 'off'
+                                                                        ])->label($ao['name'])?>
+                                                                    <?php endforeach;?>
+                                                                    <?= Html::endTag('div')?>
+                                                                <?php endif;?>
+                                                                <!-- accommodation options -->
+
                                                             <?php endforeach;?>
                                                             <?= Html::endTag('div')?>
                                                         <?php endif;?>
-                                                        <!-- accommodation options -->
+                                                        <!-- periods -->
                                                     </div>
                                                 </div>
                                             </div>

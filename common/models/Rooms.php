@@ -199,5 +199,4 @@ class Rooms extends ActiveRecord
         $this->paymentMethodsArray = ArrayHelper::getColumn($this->paymentMethods, 'id');
         $this->discountsArray = ArrayHelper::getColumn($this->discounts, 'id');
     }
-
 }

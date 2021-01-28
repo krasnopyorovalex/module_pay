@@ -121,6 +121,24 @@ class DefaultController extends ModuleController
             $image->update();
         }
     }
+    
+    /**
+     * @return bool|\yii\web\Response
+     * @throws \Exception
+     * @throws \yii\db\StaleObjectException
+     */
+    public function actionUpdatePos()
+    {
+        $to_db = array_flip(\Yii::$app->request->post('positions'));
+        foreach($to_db as $pos => $id){
+            if($rooms = Rooms::findOne((int)$id)){
+                $rooms->pos = $pos;
+                $rooms->update();
+            }
+        }
+        
+        return $this->redirect(\Yii::$app->homeUrl . $this->module->id);
+    }
 
     private function _load($id)
     {
@@ -142,7 +160,9 @@ class DefaultController extends ModuleController
             'periods_array' => Periods::find()->asArray()->all(),
             'dates_room' => ArrayHelper::map($model['periodsVias'], 'period_id', 'value'),
             'discounts_array' => ArrayHelper::map(Discounts::find()->asArray()->all(),'id','name'),
-            'ao_room' => ArrayHelper::map($model['accommodationOptionsVias'], 'accommodation_option_id', 'value'),
+            'ao_room' => ArrayHelper::map($model['accommodationOptionsVias'], function ($item){
+                return $item['accommodation_option_id'].'__'.$item['period_id'];
+            }, 'value'),
             'ao_array' => AccommodationOptions::find()->asArray()->all(),
             'images' => new RoomsImages,
         ];
