@@ -18,6 +18,7 @@ class SiteController extends Controller
 {
 
     public $settings = [];
+
     /**
      * @return string
      */

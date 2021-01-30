@@ -140,7 +140,7 @@ $this->params['breadcrumbs'][] = $this->context->actions[$this->context->action-
                                                                         <?= $form->field($model, 'aoArray['.$ao['id'].'__'.$period['id'].']')->textInput([
                                                                             'value' => (isset($ao_room[$ao['id'].'__'.$period['id']]))
                                                                                 ? $ao_room[$ao['id'].'__'.$period['id']]
-                                                                                : '',
+                                                                                : 0,
                                                                             'autocomplete' => 'off'
                                                                         ])->label($ao['name'])?>
                                                                     <?php endforeach;?>

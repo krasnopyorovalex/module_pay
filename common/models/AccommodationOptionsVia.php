@@ -37,6 +37,7 @@ class AccommodationOptionsVia extends \yii\db\ActiveRecord
             [['accommodation_option_id'], 'exist', 'skipOnError' => true, 'targetClass' => AccommodationOptions::className(), 'targetAttribute' => ['accommodation_option_id' => 'id']],
             [['period_id'], 'exist', 'skipOnError' => true, 'targetClass' => Periods::className(), 'targetAttribute' => ['period_id' => 'id']],
             [['room_id'], 'exist', 'skipOnError' => true, 'targetClass' => Rooms::className(), 'targetAttribute' => ['room_id' => 'id']],
+            [['value'], 'default', 'value'=> 0]
         ];
     }
 

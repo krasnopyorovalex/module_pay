@@ -23,6 +23,7 @@ $this->params['breadcrumbs'][] = $this->context->module->params['name'];
                             <li><a href="#empty_message" data-toggle="tab"><span>Сообщение при отсутствии номеров</span></a></li>
                             <li><a href="#date_start" data-toggle="tab"><span>Режим работы - старт</span></a></li>
                             <li><a href="#date_end" data-toggle="tab"><span>Режим работы - до</span></a></li>
+                            <li><a href="#first_title" data-toggle="tab"><span>Заголовок первого выбора размещения</span></a></li>
                         </ul>
                     </div>
 
@@ -32,6 +33,14 @@ $this->params['breadcrumbs'][] = $this->context->module->params['name'];
                                 <?= Html::beginForm(Url::toRoute(['default/update', 'id' => $settings['phone']['id']]), 'post', ['class' => 'fill-up']) ?>
                                 <div class="form-group">
                                     <?= Html::input('text', 'value', $settings['phone']['value'], ['class'=>'form-control'])?>
+                                </div>
+                                <?= Html::submitButton('Сохранить', ['class' => 'btn btn-blue']) ?>
+                                <?= Html::endForm() ?>
+                            </div>
+                            <div class="tab-pane" id="first_title">
+                                <?= Html::beginForm(Url::toRoute(['default/update', 'id' => $settings['first_title']['id']]), 'post', ['class' => 'fill-up']) ?>
+                                <div class="form-group">
+                                    <?= Html::input('text', 'value', $settings['first_title']['value'], ['class'=>'form-control'])?>
                                 </div>
                                 <?= Html::submitButton('Сохранить', ['class' => 'btn btn-blue']) ?>
                                 <?= Html::endForm() ?>

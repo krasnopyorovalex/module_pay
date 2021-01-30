@@ -33,7 +33,7 @@ VueAsset::register($this);
                 <!-- /.params-box_dates -->
                 <div class="params-box_adults_childs">
                     <div>
-                        <label for="years-above-11">Взрослых (c 11 лет):</label>
+                        <label for="years-above-11"><?= $this->context->settings['first_title']?>:</label>
                         <i class="icon_minus"></i>
                         <input type="text" id="years-above-11" name="adultsChilds" maxlength="1" value="1" data-max-count="<?= $max_count_adults?>" data-min-count="1">
                         <i class="icon_plus"></i>

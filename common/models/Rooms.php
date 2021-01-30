@@ -92,8 +92,8 @@ class Rooms extends ActiveRecord
         return [
             'id' => 'ID',
             'name' => 'Название',
-            'max_peoples' => 'Максимальное количество',
-            'max_peoples_adults' => 'Максимальное количество взрослых',
+            'max_peoples' => 'Кол-во мест вместе с доп. местами',
+            'max_peoples_adults' => 'Кол-во основных мест',
             'tariff_id' => 'Тариф номера'
         ];
     }

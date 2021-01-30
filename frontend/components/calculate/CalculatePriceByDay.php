@@ -100,7 +100,9 @@ class CalculatePriceByDay implements CalculateInterface
      */
     private function checkAccommodationOptions($price, $item, $userCheckedAll, $day)
     {
-        if (($this->adultsChilds > $item['max_peoples_adults']) || ($userCheckedAll > $item['max_peoples'])) {
+        $maxAdultsCount = $this->adultsChilds;
+
+        if (($maxAdultsCount > $item['max_peoples_adults']) || ($userCheckedAll > $item['max_peoples'])) {
             return 0;
         }
 
@@ -109,17 +111,18 @@ class CalculatePriceByDay implements CalculateInterface
         foreach ($this->accommodationOptions as $key => $value) {
             $priceAO = $this->getPriceAO($item, $day, $key);
 
-            if (
-                $value && isset($priceAO) &&
-                ($this->adultsChilds < $item['max_peoples_adults']) &&
-                $forIsBasicPlace[$key]['is_basic_place']
-            ) {
+            if ($value && ($maxAdultsCount < $item['max_peoples_adults'])) {
+                $maxAdultsCount++;
+                $value--;
+            }
+
+            if ($value && isset($priceAO) && ($userCheckedAll <= $item['max_peoples_adults'])) {
+                continue;
+            }
+
+            if ($value && isset($priceAO) && ($this->adultsChilds < $item['max_peoples_adults']) && $forIsBasicPlace[$key]['is_basic_place']) {
                 $price = ($price - $priceAO * $value);
-            } elseif
-            (
-                $value && $priceAO &&
-                !$forIsBasicPlace[$key]['is_basic_place']
-            ) {
+            } elseif ($value && isset($priceAO) && !$forIsBasicPlace[$key]['is_basic_place']) {
                 $price = ($price + $priceAO * $value);
             }
 
