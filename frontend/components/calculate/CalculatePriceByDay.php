@@ -100,36 +100,26 @@ class CalculatePriceByDay implements CalculateInterface
      */
     private function checkAccommodationOptions($price, $item, $userCheckedAll, $day)
     {
-        $maxAdultsCount = $this->adultsChilds;
-
-        if (($maxAdultsCount > $item['max_peoples_adults']) || ($userCheckedAll > $item['max_peoples'])) {
+        if (($this->adultsChilds > $item['max_peoples_adults']) || ($userCheckedAll > $item['max_peoples'])) {
             return 0;
         }
 
-        $forIsBasicPlace = ArrayHelper::index($item['accommodationOptions'], 'id');
+        $basicPlaceList = ArrayHelper::index($item['accommodationOptions'], 'id');
 
         foreach ($this->accommodationOptions as $key => $value) {
             $priceAO = $this->getPriceAO($item, $day, $key);
 
-            if ($value && ($maxAdultsCount < $item['max_peoples_adults'])) {
-                $maxAdultsCount++;
-                $value--;
+            if (!$value && !isset($priceAO)) {
+                return 0;
             }
 
-            if ($value && isset($priceAO) && ($userCheckedAll <= $item['max_peoples_adults'])) {
-                continue;
-            }
-
-            if ($value && isset($priceAO) && ($this->adultsChilds < $item['max_peoples_adults']) && $forIsBasicPlace[$key]['is_basic_place']) {
+            if (($this->adultsChilds <= $item['max_peoples_adults']) && $basicPlaceList[$key]['is_basic_place']) {
                 $price = ($price - $priceAO * $value);
-            } elseif ($value && isset($priceAO) && !$forIsBasicPlace[$key]['is_basic_place']) {
+            } elseif (!$basicPlaceList[$key]['is_basic_place']) {
                 $price = ($price + $priceAO * $value);
             }
 
-            if (
-                $value && !isset($priceAO) ||
-                ($forIsBasicPlace[$key]['is_basic_place'] && (($this->adultsChilds + $value) > $item['max_peoples_adults']))
-            ) {
+            if (($basicPlaceList[$key]['is_basic_place'] && (($this->adultsChilds + $value) > $item['max_peoples']))) {
                 return 0;
             }
         }
