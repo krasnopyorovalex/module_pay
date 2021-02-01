@@ -14,7 +14,7 @@
 <p>Заезд: <?= Yii::$app->formatter->asDate($model['params']['arrivalDate'],'long')?></p>
 <p>Выезд: <?= Yii::$app->formatter->asDate($model['params']['departureDate'],'long')?></p>
 <p>Количество ночей: <?= $model['diffDays']?></p>
-<p>Категоря номера: <?= $model['room']['name']?></p>
+<p>Категория номера: <?= $model['room']['name']?></p>
 <p>Взрослых: <?= $model['params']['adultsChilds']?></p>
 
 <?php

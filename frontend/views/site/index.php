@@ -33,7 +33,7 @@ VueAsset::register($this);
                 <!-- /.params-box_dates -->
                 <div class="params-box_adults_childs">
                     <div>
-                        <label for="years-above-11">Взрослых (c 11 лет):</label>
+                        <label for="years-above-11">Взрослых (и детей с 8 лет):</label>
                         <i class="icon_minus"></i>
                         <input type="text" id="years-above-11" name="adultsChilds" maxlength="1" value="1" data-max-count="<?= $max_count_adults?>" data-min-count="1">
                         <i class="icon_plus"></i>
@@ -125,7 +125,7 @@ VueAsset::register($this);
                         </div>
                         <!-- /.change-dates -->
                         <div class="info-list">
-                            <span>Взрослых (c 11 лет): {{ params.adultsChilds }}</span>
+                            <span>Взрослых (c 8 лет): {{ params.adultsChilds }}</span>
                             <span v-for="item in room.accommodationOptions">{{ item.name }}: {{ params.accommodationOptions[item.id] }}</span>
                         </div>
                         <!-- /.info-list -->
@@ -198,7 +198,7 @@ VueAsset::register($this);
                         <p><b>Выезд:</b> {{ checkedRoom.dateEnd }}</p>
                         <p><b>Количество ночей:</b> {{ checkedRoom.diffDays }}</p>
 
-                        <p><b>Категоря номера:</b> {{ checkedRoom.name }}</p>
+                        <p><b>Категория номера:</b> {{ checkedRoom.name }}</p>
                         <p><b>Взрослых:</b> {{ params.adultsChilds }}</p>
                         <p v-for="item in checkedRoom.accommodationOptions"><b>{{ item.name }}:</b> {{ params.accommodationOptions[item.id] }}</p>
                         <p><b>Тариф:</b> {{ checkedRoom.tariff.name }}</p>
