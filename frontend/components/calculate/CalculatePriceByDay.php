@@ -59,14 +59,15 @@ class CalculatePriceByDay implements CalculateInterface
         foreach ($checkRange as $day) {
             $price = $this->inPeriods($day, $item, $periodsValues);
 
-            $priceFull = $price = $this->checkAccommodationOptions($price, $item, $userCheckedAll, $day);
-
-            $price = $this->checkDiscounts($day, $price, $item);
-
             if ($this->adultsChilds <= $item['max_peoples_adults']) {
-                $priceFull = $priceFull * $item['max_peoples_adults'];
                 $price = $price * $item['max_peoples_adults'];
             }
+
+            $price = $this->checkAccommodationOptions($price, $item, $userCheckedAll, $day);
+
+            $priceFull = $price;
+
+            $price = $this->checkDiscounts($day, $price, $item);
 
             array_push($pricesList, $price);
             array_push($pricesFullList, $priceFull);
@@ -128,6 +129,7 @@ class CalculatePriceByDay implements CalculateInterface
                 return 0;
             }
         }
+
         return $price;
     }
 

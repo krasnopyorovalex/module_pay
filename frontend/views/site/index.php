@@ -125,7 +125,7 @@ VueAsset::register($this);
                         </div>
                         <!-- /.change-dates -->
                         <div class="info-list">
-                            <span>Взрослых (c 11 лет): {{ params.adultsChilds }}</span>
+                            <span><?= $this->context->settings['first_title']?>: {{ params.adultsChilds }}</span>
                             <span v-for="item in room.accommodationOptions">{{ item.name }}: {{ params.accommodationOptions[item.id] }}</span>
                         </div>
                         <!-- /.info-list -->
