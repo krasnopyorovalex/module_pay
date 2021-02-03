@@ -63,6 +63,11 @@ class CalculatePriceByDay implements CalculateInterface
 
             $price = $this->checkDiscounts($day, $price, $item);
 
+            if ($this->adultsChilds < $item['max_peoples']) {
+                $priceFull = $priceFull * 2;
+                $price = $price * 2;
+            }
+
             array_push($pricesList, $price);
             array_push($pricesFullList, $priceFull);
         }
