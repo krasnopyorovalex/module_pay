@@ -60,7 +60,7 @@ class DefaultController extends ModuleController
     {
         $model = $this->model;
         return $this->render('index',[
-            'dataProvider' => $this->findData($model::find())
+            'dataProvider' => $this->findData($model::find()->orderBy('pos'))
         ]);
     }
 

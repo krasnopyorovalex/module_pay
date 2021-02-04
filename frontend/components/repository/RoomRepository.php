@@ -26,7 +26,7 @@ class RoomRepository implements RepositoryInterface
             'paymentMethods',
             'accommodationOptions',
             'accommodationOptionsVias'
-        ])->asArray()->all();
+        ])->asArray()->orderBy('pos')->all();
     }
 
     public function getAll()
