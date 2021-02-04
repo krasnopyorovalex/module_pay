@@ -56,14 +56,28 @@ class CalculatePriceByDay implements CalculateInterface
 
         $pricesList = [];
         $pricesFullList = [];
-        foreach ($checkRange as $day) {
-            $price = $this->inPeriods($day, $item, $periodsValues);
 
-            if ($this->adultsChilds <= $item['max_peoples_adults']) {
-                $price = $price * $item['max_peoples_adults'];
+        $isBasicPlaces = 0;
+        $basicPlaceList = ArrayHelper::index($item['accommodationOptions'], 'id');
+        foreach ($this->accommodationOptions as $key => $value) {
+            if (isset($basicPlaceList[$key]['is_basic_place'])) {
+                $isBasicPlaces++;
+            }
+        }
+
+        foreach ($checkRange as $day) {
+            $priceInPeriod = $this->inPeriods($day, $item, $periodsValues);
+            $price = $priceInPeriod;
+
+            if (($this->adultsChilds + $isBasicPlaces) <= $item['max_peoples_adults']) {
+                $price *= $this->adultsChilds;
+            } elseif ($this->adultsChilds <= $item['max_peoples_adults']) {
+                $price *= $item['max_peoples_adults'] - ($item['max_peoples_adults'] - $isBasicPlaces);
             }
 
-            $price = $this->checkAccommodationOptions($price, $item, $userCheckedAll, $day);
+            $priceAO = $this->checkAccommodationOptions($priceInPeriod, $item, $userCheckedAll, $day);
+
+            $price = $priceAO ? $priceAO + $price : 0;
 
             $priceFull = $price;
 
@@ -115,18 +129,18 @@ class CalculatePriceByDay implements CalculateInterface
         foreach ($this->accommodationOptions as $key => $value) {
             $priceAO = $this->getPriceAO($item, $day, $key);
 
+            if (($basicPlaceList[$key]['is_basic_place'] && (($this->adultsChilds + $value) > $item['max_peoples']))) {
+                return 0;
+            }
+
             if (!$value && !isset($priceAO)) {
                 return 0;
             }
 
             if (($this->adultsChilds <= $item['max_peoples_adults']) && $basicPlaceList[$key]['is_basic_place']) {
-                $price = ($price - $priceAO * $value);
+                $price = (($price - $priceAO) * $value);
             } elseif (!$basicPlaceList[$key]['is_basic_place']) {
                 $price = ($price + $priceAO * $value);
-            }
-
-            if (($basicPlaceList[$key]['is_basic_place'] && (($this->adultsChilds + $value) > $item['max_peoples']))) {
-                return 0;
             }
         }
 
