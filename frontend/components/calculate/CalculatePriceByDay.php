@@ -58,10 +58,12 @@ class CalculatePriceByDay implements CalculateInterface
         $pricesFullList = [];
 
         $isBasicPlaces = 0;
-        $basicPlaceList = ArrayHelper::index($item['accommodationOptions'], 'id');
-        foreach ($this->accommodationOptions as $key => $value) {
-            if (isset($basicPlaceList[$key]['is_basic_place'])) {
-                $isBasicPlaces++;
+        if (array_sum($this->accommodationOptions)) {
+            $basicPlaceList = ArrayHelper::index($item['accommodationOptions'], 'id');
+            foreach ($this->accommodationOptions as $key => $value) {
+                if (isset($basicPlaceList[$key]['is_basic_place'])) {
+                    $isBasicPlaces++;
+                }
             }
         }
 
@@ -70,14 +72,22 @@ class CalculatePriceByDay implements CalculateInterface
             $price = $priceInPeriod;
 
             if (($this->adultsChilds + $isBasicPlaces) <= $item['max_peoples_adults']) {
-                $price *= $this->adultsChilds;
+                $price *= $isBasicPlaces ? ($item['max_peoples_adults'] - $this->adultsChilds) : $item['max_peoples_adults'];
+                //$item['name'] .= ' - first if';
             } elseif ($this->adultsChilds <= $item['max_peoples_adults']) {
                 $price *= $item['max_peoples_adults'] - ($item['max_peoples_adults'] - $isBasicPlaces);
+                //$item['name'] .= ' - second if';
             }
 
-            $priceAO = $this->checkAccommodationOptions($priceInPeriod, $item, $userCheckedAll, $day);
+            if (array_sum($this->accommodationOptions)) {
+                $priceAO = $this->checkAccommodationOptions($priceInPeriod, $item, $userCheckedAll, $day);
 
-            $price = $priceAO ? $priceAO + $price : 0;
+                $price = $priceAO ? $priceAO + $price : 0;
+            }
+
+            if (($this->adultsChilds + $isBasicPlaces) > $item['max_peoples_adults']) {
+                $price = 0;
+            }
 
             $priceFull = $price;
 
