@@ -85,9 +85,9 @@ class CalculatePriceByDay implements CalculateInterface
                 $price = $priceAO ? $priceAO + $price : 0;
             }
 
-            if (($this->adultsChilds + $isBasicPlaces) > $item['max_peoples_adults']) {
-                $price = 0;
-            }
+//            if (($this->adultsChilds + $isBasicPlaces) > $item['max_peoples_adults']) {
+//                $price = 0;
+//            }
 
             $priceFull = $price;
 
