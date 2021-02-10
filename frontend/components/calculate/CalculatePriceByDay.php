@@ -74,9 +74,11 @@ class CalculatePriceByDay implements CalculateInterface
             if (($this->adultsChilds + $isBasicPlaces) <= $item['max_peoples_adults']) {
                 $price *= $isBasicPlaces ? ($item['max_peoples_adults'] - $this->adultsChilds) : $item['max_peoples_adults'];
                 //$item['name'] .= ' - first if';
-            } elseif ($this->adultsChilds <= $item['max_peoples_adults']) {
+            } elseif ($this->adultsChilds < $item['max_peoples_adults']) {
                 $price *= $item['max_peoples_adults'] - ($item['max_peoples_adults'] - $isBasicPlaces);
                 //$item['name'] .= ' - second if';
+            } else {
+                $price *= $item['max_peoples_adults'];
             }
 
             if (array_sum($this->accommodationOptions)) {
