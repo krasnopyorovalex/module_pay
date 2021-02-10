@@ -61,7 +61,7 @@ class CalculatePriceByDay implements CalculateInterface
         if (array_sum($this->accommodationOptions)) {
             $basicPlaceList = ArrayHelper::index($item['accommodationOptions'], 'id');
             foreach ($this->accommodationOptions as $key => $value) {
-                if (isset($basicPlaceList[$key]['is_basic_place'])) {
+                if ($basicPlaceList[$key]['is_basic_place']) {
                     $isBasicPlaces++;
                 }
             }
