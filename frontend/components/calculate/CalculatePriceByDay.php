@@ -87,6 +87,10 @@ class CalculatePriceByDay implements CalculateInterface
                 $price = $priceAO ? $priceAO + $price : 0;
             }
 
+            if (($this->adultsChilds + $isBasicPlaces) > $item['max_peoples']) {
+                $price = 0;
+            }
+
             $priceFull = $price;
 
             $price = $this->checkDiscounts($day, $price, $item);
@@ -128,7 +132,7 @@ class CalculatePriceByDay implements CalculateInterface
      */
     private function checkAccommodationOptions($price, $item, $userCheckedAll, $day)
     {
-        if (($userCheckedAll > $item['max_peoples'])) {
+        if ($userCheckedAll > $item['max_peoples']) {
             return 0;
         }
 
