@@ -8,6 +8,8 @@ use common\models\PaymentMethods;
 use common\models\Rooms;
 use common\models\Settings;
 use common\models\Tariffs;
+use Domain\Request\FormDto;
+use Exception;
 use yii\helpers\ArrayHelper;
 use yii\web\Controller;
 
@@ -21,12 +23,18 @@ class SiteController extends Controller
 
     /**
      * @return string
+     * @throws Exception
      */
     public function actionIndex()
     {
+        $formDto = FormDto::fromRequest(\Yii::$app->request);
+
         $dateStartWork = (new \DateTime($this->settings['date_start']))->format('d.m.Y');
         $today = (new \DateTime())->format('d.m.Y');
-        $dateStart = ( (strtotime($dateStartWork) < strtotime($today)) ? $today : $dateStartWork );
+        $dateStart = ((strtotime($dateStartWork) < strtotime($today)) ? $today : $dateStartWork);
+
+        $dateStart = $formDto->arrivalDate ? $formDto->arrivalDate : $dateStart;
+        $dateEnd = $formDto->departureDate ? $formDto->departureDate : date('d.m.Y',strtotime($dateStart . "+1 days"));
 
         return $this->render('index', [
             'info_messages' => InfoMessages::find()->all(),
@@ -35,7 +43,8 @@ class SiteController extends Controller
             'tariffs' => Tariffs::find()->all(),
             'payment_methods' => PaymentMethods::find()->all(),
             'dateStart' => $dateStart,
-            'dateEnd' => date('d.m.Y',strtotime($dateStart . "+1 days"))
+            'dateEnd' => $dateEnd,
+            'formDto' => $formDto
         ]);
     }
 

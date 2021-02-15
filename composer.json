@@ -29,6 +29,11 @@
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*"
     },
+    "autoload": {
+        "psr-4": {
+            "Domain\\": "Domain"
+        }
+    },
     "config": {
         "process-timeout": 1800,
         "fxp-asset": {

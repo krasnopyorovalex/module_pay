@@ -10,6 +10,7 @@ use frontend\assets\VueAsset;
 /* @var $max_count_adults integer */
 /* @var $dateStart string */
 /* @var $dateEnd string */
+/* @var $formDto Domain\Request\FormDto */
 
 VueAsset::register($this);
 ?>
@@ -43,7 +44,7 @@ VueAsset::register($this);
                             <div>
                                 <label for="lf_<?= $ao->id?>"><?= $ao->name?></label>
                                 <i class="icon_minus"></i>
-                                <input type="text" id="lf_<?= $ao->id?>" name="accommodationOptions[<?= $ao->id?>]" maxlength="1" data-max-count="<?= $ao->max_count?>" data-min-count="0" value="0">
+                                <input type="text" id="lf_<?= $ao->id?>" name="accommodationOptions[<?= $ao->id?>]" value="<?= isset($formDto->accommodationOptions[$ao->id]) ? $formDto->accommodationOptions[$ao->id] : 0 ?>" maxlength="1" data-max-count="<?= $ao->max_count?>" data-min-count="0">
                                 <i class="icon_plus"></i>
                             </div>
                         <?php endforeach; ?>
