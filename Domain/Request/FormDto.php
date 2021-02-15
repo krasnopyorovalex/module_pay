@@ -12,7 +12,7 @@ class FormDto
 {
     public $arrivalDate;
     public $departureDate;
-    public $adultsChild = 1;
+    public $adultsChild;
     public $accommodationOptions = [];
 
 
@@ -30,7 +30,7 @@ class FormDto
         $self = new self();
         $self->arrivalDate = $request->get('arrivalDate');
         $self->departureDate = $request->get('departureDate');
-        $self->adultsChild = $request->get('adultsChilds');
+        $self->adultsChild = $request->get('adultsChilds') ? $request->get('adultsChilds') : 1;
         $self->accommodationOptions = $request->get('accommodationOptions');
 
         return $self;
