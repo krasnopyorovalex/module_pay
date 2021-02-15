@@ -12,7 +12,7 @@ class FormDto
 {
     public $arrivalDate;
     public $departureDate;
-    public $adultsChild;
+    public $adultsChild = 1;
     public $accommodationOptions = [];
 
 

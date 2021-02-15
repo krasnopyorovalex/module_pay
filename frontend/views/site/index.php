@@ -36,7 +36,7 @@ VueAsset::register($this);
                     <div>
                         <label for="years-above-11"><?= $this->context->settings['first_title']?>:</label>
                         <i class="icon_minus"></i>
-                        <input type="text" id="years-above-11" name="adultsChilds" maxlength="1" value="1" data-max-count="<?= $max_count_adults?>" data-min-count="1">
+                        <input type="text" id="years-above-11" name="adultsChilds" maxlength="1" value="<?= $formDto->adultsChild?>" data-max-count="<?= $max_count_adults?>" data-min-count="1">
                         <i class="icon_plus"></i>
                     </div>
                     <?php if ($accommodation_options): ?>
